@@ -1,0 +1,4 @@
+.AppleDouble
+node_modules/
+jspm_packages/
+aurelia_app/dist/

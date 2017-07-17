@@ -1,0 +1,9 @@
+<template>
+  <section class="au-animate">
+    <h2>${heading}</h2>
+    <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="characterName of charactersName">
+      <a class="name" href="#" click.trigger="goToCharacter(characterName.name)">${characterName.name}</p>
+    </div>
+    <input type="button" value="Créer un personnage" click.trigger="createCharacter()"/>
+  </section>
+</template>

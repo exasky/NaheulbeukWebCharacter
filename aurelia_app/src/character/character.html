@@ -1,0 +1,18 @@
+<template>
+  <require from="blur-image"></require>
+
+  <section class="au-animate">
+    <h2>${heading}</h2>
+    <div class="row au-stagger">
+      <div class="card">
+        <input value.bind="character.name"/>
+        <input value.bind="character.game"/>
+        <p class="name">${character.game}</p>
+          <!-- <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="item of character.items">
+            <p class="name">${item}</p>
+          </div> -->
+        <input type="button" class="btn btn-success" value="Save" click.trigger="save()"/>
+      </div>
+    </div>
+  </section>
+</template>
