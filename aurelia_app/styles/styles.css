@@ -184,6 +184,18 @@ div.au-stagger {
   }
 }
 
+.small-text {
+  font-size: 12px;
+}
+
+.flex-container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  align-items: center;
+    justify-content: center;
+}
+
 .flex {
   display: flex;
 }
@@ -202,6 +214,10 @@ div.au-stagger {
 
 .flex-shrink {
   flex: 0;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .flex-horizontal > .flex.vertical-align {
@@ -224,6 +240,10 @@ input.small-width {
   width: 50px;
 }
 
+input.medium-width {
+  width: 100px;
+}
+
 .border {
   border: 1px solid black;
 }
@@ -238,4 +258,9 @@ input.small-width {
 
 .modified-padding {
   padding-top: 10px;
+}
+
+/* OVVERIDE */
+.progress {
+  margin-bottom: 5px;
 }

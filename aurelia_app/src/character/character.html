@@ -1,170 +1,257 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <img src="/img/header-line.png"/>
-    </div>
-    <div class="row flex border small-margin">
-      <div class="flex-grow">
-        <label>Nom</label>
-        <input value.bind="character.name" type="text"/>
+  <div class="flex-container small-text">
+    <div class="flex flex-vertical">
+      <div class="flex vertical-align horizontal-align">
+        <img src="/img/header-line.png" style="max-width: 75%;"/>
       </div>
-      <div class="flex-grow">
-        <label>Origine</label>
-        <input value.bind="character.origin" type="text"/>
-      </div>
-      <div class="flex-grow">
-        <label>Metier(s)</label>
-        <input value.bind="character.jobs" type="text"/>
-      </div>
-      <div class="flex-grow">
-        <label>Sexe</label>
-        <label repeat.for="sex of sexs">
-          <input type="radio" value.bind="sex" name="testOptions" checked.bind="character.sex"><i class="fa fa-${sex}"></i> 
-        </label>
-      </div>
-    </div>
-    <div class="row border small-margin">
-      <div class="col-lg-3">
-        <div class="flex flex-vertical">
-          <label>ENERGIE VITALE (EV-PV)</label>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width:100%"></div>
+      <div class="flex flex-horizontal">
+        <div class="flex flex-shrink flex-vertical">
+          <div class="flex flex-horizontal border">
+            <div class="flex flex-shrink flex-vertical small-margin">
+              <label>NIVEAU</label>
+              <label>EXPÉRIENCE</label>
+              <label>POINTS DE DESTIN</label>
+            </div>
+            <div class="flex flex-shrink flex-vertical small-margin">
+              <input class="small-width" value.bind="character.level" type="numeric"/>
+              <input class="small-width" value.bind="character.experience" type="numeric"/>
+              <input class="small-width" value.bind="character.destinyPoints" type="numeric"/>
+            </div>
+          </div>
+          <div class="flex flex-vertical">
+            <label class="flex flex-grow">MES RICHESSES À MOI QUE J'AI</label>
+            <input class="small-width" value.bind="character.destinyPoints" type="numeric"/>
+          </div>
+          <div class="flex flex-grow flex-vertical">
+            <label>MACHNINS PRÉCIEUX</label>
+            <div class="flex vertical-align horizontal-align" repeat.for="preciousItem of character.preciousItems">
+              <input value.bind="preciousItems.name" type="text"/>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-grow flex-vertical" style="flex-grow: 2">
+          <div class="flex border small-margin">
+            <div class="flex-grow">
+              <label>Nom</label>
+              <input value.bind="character.name" type="text"/>
+            </div>
+            <div class="flex-grow">
+              <label>Origine</label>
+              <input value.bind="character.origin" type="text"/>
+            </div>
+            <div class="flex-grow">
+              <label>Metier(s)</label>
+              <input value.bind="character.jobs" type="text"/>
+            </div>
+            <div class="flex-grow">
+              <label>Sexe</label>
+              <label repeat.for="sex of sexs">
+                <input type="radio" value.bind="sex" name="testOptions" checked.bind="character.sex"><i class="fa fa-${sex}"></i> 
+              </label>
+            </div>
+          </div>
+          <div class="border small-margin">
+            <div class="col-lg-3">
+              <div class="flex flex-vertical">
+                <label>ENERGIE VITALE (EV-PV)</label>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width:100%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-1">
+              <div class="flex flex-vertical">
+                <label>Max</label>
+                <input class="small-width" value.bind="character.maxPv" type="number"/>
+              </div>
+            </div>
+            <div class="col-lg-1">
+              <div class="flex flex-vertical">
+                <label>Courant</label>
+                <input class="small-width" value.bind="character.currentPv" type="number"/>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="flex flex-vertical">
+                <label>ENERGIE ASTRALE (EA-PA)</label>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width:100%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-1">
+              <div class="flex flex-vertical">
+                <label>Max</label>
+                <input class="small-width" value.bind="character.maxPa" type="number"/>
+              </div>
+            </div>
+            <div class="col-lg-1">
+              <div class="flex flex-vertical">
+                <label>Courant</label>
+                <input class="small-width" value.bind="character.currentPa" type="number"/>
+              </div>
+            </div>
+          </div>
+          <div class="flex border small-margin">
+            <div class="flex flex-grow flex-horizontal">
+              <div class="flex flex-vertical">
+                <label>MAGIE PHYS.</label>
+                <small>Moyenne INT et AD</small>
+              </div>
+              <div class="flex vertical-align horizontal-align flex-grow">
+                <input class="small-width" value.bind="physMagic" type="number"/>
+              </div>
+            </div>
+            <div class="flex flex-grow flex-horizontal">
+              <div class="flex flex-vertical">
+                <label>MAGIE PSY.</label>
+                <small>Moyenne INT et CHA</small>
+              </div>
+              <div class="flex vertical-align horizontal-align flex-grow">
+                <input class="small-width" value.bind="psyMagic" type="number"/>
+              </div>
+            </div>
+            <div class="flex flex-grow flex-horizontal">
+              <div class="flex flex-vertical">
+                <label>RESIST MAGIE.</label>
+                <small>Moyenne COU, INT et FO</small>
+              </div>
+              <div class="flex vertical-align horizontal-align flex-grow">
+                <input class="small-width" value.bind="resistMagic" type="number"/>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-horizontal border small-margin">
+            <div class="flex flex-vertical small-margin">
+              <label>&nbsp;</label>
+              <label>COURAGE (COU)</label>
+              <label>INTELLIGENCE (INT)</label>
+              <label>CHARISME (CHA)</label>
+              <label>ADRESSE (AD)</label>
+              <label>FORCE (FO)</label>
+            </div>
+            <div class="flex flex-shrink flex-vertical">
+              <label class="flex vertical-align horizontal-align">Orig</label>
+              <div class="border">
+                <div class="flex flex-vertical small-border-margin">
+                  <input class="small-width" value.bind="character.maxCOU" type="number"/>
+                  <input class="small-width" value.bind="character.maxINT" type="number"/>
+                  <input class="small-width" value.bind="character.maxCHA" type="number"/>
+                  <input class="small-width" value.bind="character.maxADR" type="number"/>
+                  <input class="small-width" value.bind="character.maxFOR" type="number"/>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-shrink flex-vertical small-margin">
+              <label>&nbsp;</label>
+              <small class="modified-padding">modifié...</small>
+              <small class="modified-padding">modifiée...</small>
+              <small class="modified-padding">modifié...</small>
+              <small class="modified-padding">modifiée...</small>
+              <small class="modified-padding">modifiée...</small>
+            </div>
+            <div class="flex flex-shrink flex-vertical vertical-align horizontal-align" repeat.for="char of character.characteristics">
+              ${i}
+              <input class="flex flex-shrink medium-width" value.bind="char.item"type="text" placeholder="Modifié par..."/>
+              <div class="flex flex-grow flex-vertical small-margin vertical-align horizontal-align">
+                <input class="small-width" value.bind="char.currentCOU" type="number"/>
+                <input class="small-width" value.bind="char.currentINT" type="number"/>
+                <input class="small-width" value.bind="char.currentCHA" type="number"/>
+                <input class="small-width" value.bind="char.currentADR" type="number"/>
+                <input class="small-width" value.bind="char.currentFOR" type="number"/>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-horizontal border small-margin">
+            <div class="flex flex-vertical small-margin">
+              <label>&nbsp;</label>
+              <label>ATTAQUE</label>
+              <label>PARADE</label>
+            </div>
+            <div class="flex flex-shrink flex-vertical">
+              <label class="flex vertical-align horizontal-align">Orig</label>
+              <div class="border">
+                <div class="flex flex-vertical small-border-margin">
+                  <input class="small-width" value.bind="character.maxATT" type="number"/>
+                  <input class="small-width" value.bind="character.maxPAR" type="number"/>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-shrink flex-vertical small-margin">
+              <label>&nbsp;</label>
+              <small class="modified-padding">modifiée...</small>
+              <small class="modified-padding">modifiée...</small>
+            </div>
+            <div class="flex flex-shrink flex-vertical vertical-align horizontal-align" repeat.for="fightChar of character.fightCharacteristics">
+              <input class="flex flex-shrink medium-width" value.bind="fightChar.item"type="text" placeholder="Modifié par..."/>
+              <div class="flex flex-grow flex-vertical small-margin vertical-align horizontal-align">
+                <input class="small-width" value.bind="fightChar.currentATT" type="number"/>
+                <input class="small-width" value.bind="fightChar.currentPAR" type="number"/>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-horizontal">
+            <input type="button" class="btn btn-success" value="Save" click.trigger="save()"/>
+            <input type="button" class="btn btn-danger" value="Delete" disabled.bind="!character._id" click.trigger="delete()"/>
+          </div>
+        </div>
+        <div class="flex flex-grow flex-vertical">
+          <div class="flex flex-horizontal">
+            <div class="flex flex-vertical small-margin">
+              <label class="flex vertical-align horizontal-align">ARMURES ET PROTECTIONS</label>
+              <small class="flex vertical-align horizontal-align">PR: valeur de protection - RUP: point de rupture</small>
+              <div class="flex vertical-align horizontal-align" repeat.for="defItem of character.defItems">
+                <input class="flex-grow" value.bind="defItem.name" type="text"/>
+              </div>
+            </div>
+            <div class="flex flex-vertical small-margin">
+              <label class="flex vertical-align horizontal-align">PR</label>
+              <small>&nbsp;</small>
+              <div class="flex vertical-align horizontal-align" repeat.for="defItem of character.defItems">
+                <input class="small-width" value.bind="defItem.protectionPoint" type="number"/>
+              </div>
+            </div>
+            <div class="flex flex-vertical small-margin">
+              <label class="flex vertical-align horizontal-align">RUP</label>
+              <small>&nbsp;</small>
+              <div class="flex vertical-align horizontal-align" repeat.for="defItem of character.defItems">
+                <input class="small-width" value.bind="defItem.breakPoint" type="number"/>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-grow flex-horizontal">
+            <div class="flex flex-vertical small-margin">
+              <label class="flex vertical-align horizontal-align">ARMEMENT ET BASTON</label>
+              <small class="flex vertical-align horizontal-align">PI: points d'impact - RUP: point de rupture</small>
+              <div class="flex vertical-align horizontal-align" repeat.for="attItem of character.attItems">
+                <input class="flex-grow" value.bind="attItem.name" type="text"/>
+              </div>
+            </div>
+            <div class="flex flex-vertical small-margin">
+              <label class="flex vertical-align horizontal-align">PI</label>
+              <small>&nbsp;</small>
+              <div class="flex vertical-align horizontal-align" repeat.for="attItem of character.attItems">
+                <input class="small-width" value.bind="attItem.damagePoint" type="number"/>
+              </div>
+            </div>
+            <div class="flex flex-vertical small-margin">
+              <label class="flex vertical-align horizontal-align">RUP</label>
+              <small>&nbsp;</small>
+              <div class="flex vertical-align horizontal-align" repeat.for="attItem of character.attItems">
+                <input class="small-width" value.bind="attItem.breakPoint" type="number"/>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-vertical">
+            <label>ÉQUIPEMENT, BABIOLES, FRINGUES</label>
+            <div class="flex flex-horizontal flex-wrap">
+              <div class="flex vertical-align horizontal-align" style="width: calc(100% * (1/3));" repeat.for="item of character.items">
+                <input value.bind="item.name" type="text"/>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-1">
-        <div class="flex flex-vertical">
-          <label>Max</label>
-          <input class="small-width" value.bind="character.maxPv" type="number"/>
-        </div>
-      </div>
-      <div class="col-lg-1">
-        <div class="flex flex-vertical">
-          <label>Courant</label>
-          <input class="small-width" value.bind="character.currentPv" type="number"/>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="flex flex-vertical">
-          <label>ENERGIE ASTRALE (EA-PA)</label>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width:100%"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-1">
-        <div class="flex flex-vertical">
-          <label>Max</label>
-          <input class="small-width" value.bind="character.maxPa" type="number"/>
-        </div>
-      </div>
-      <div class="col-lg-1">
-        <div class="flex flex-vertical">
-          <label>Courant</label>
-          <input class="small-width" value.bind="character.currentPa" type="number"/>
-        </div>
-      </div>
-    </div>
-    <div class="row flex border small-margin">
-      <div class="flex flex-grow flex-horizontal">
-        <div class="flex flex-vertical">
-          <label>MAGIE PHYS.</label>
-          <small>Moyenne INT et AD</small>
-        </div>
-        <div class="flex vertical-align horizontal-align flex-grow">
-          <input class="small-width" value.bind="physMagic" type="number"/>
-        </div>
-      </div>
-      <div class="flex flex-grow flex-horizontal">
-        <div class="flex flex-vertical">
-          <label>MAGIE PSY.</label>
-          <small>Moyenne INT et CHA</small>
-        </div>
-        <div class="flex vertical-align horizontal-align flex-grow">
-          <input class="small-width" value.bind="psyMagic" type="number"/>
-        </div>
-      </div>
-      <div class="flex flex-grow flex-horizontal">
-        <div class="flex flex-vertical">
-          <label>RESIST MAGIE.</label>
-          <small>Moyenne COU, INT et FO</small>
-        </div>
-        <div class="flex vertical-align horizontal-align flex-grow">
-          <input class="small-width" value.bind="resistMagic" type="number"/>
-        </div>
-      </div>
-    </div>
-    <div class="row flex flex-horizontal border small-margin">
-      <div class="flex flex-grow flex-vertical small-margin">
-        <label>&nbsp;</label>
-        <label>COURAGE (COU)</label>
-        <label>INTELLIGENCE (INT)</label>
-        <label>CHARISME (CHA)</label>
-        <label>ADRESSE (AD)</label>
-        <label>FORCE (FO)</label>
-      </div>
-      <div class="flex flex-shrink flex-vertical">
-        <label class="flex vertical-align horizontal-align">Orig</label>
-        <div class="border">
-          <div class="flex flex-vertical small-border-margin">
-            <input class="small-width" value.bind="character.maxCOU" type="number"/>
-            <input class="small-width" value.bind="character.maxINT" type="number"/>
-            <input class="small-width" value.bind="character.maxCHA" type="number"/>
-            <input class="small-width" value.bind="character.maxADR" type="number"/>
-            <input class="small-width" value.bind="character.maxFOR" type="number"/>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-shrink flex-vertical small-margin">
-        <label>&nbsp;</label>
-        <small class="modified-padding">modifié...</small>
-        <small class="modified-padding">modifié...</small>
-        <small class="modified-padding">modifié...</small>
-        <small class="modified-padding">modifié...</small>
-        <small class="modified-padding">modifié...</small>
-      </div>
-      <div class="flex flex-grow flex-vertical vertical-align horizontal-align" repeat.for="i of 5">
-        <input class="flex flex-shrink" value.bind="character."type="text" placeholder="Modifié par..."/>
-        <div class="flex flex-grow flex-vertical small-margin vertical-align horizontal-align">
-          <input class="small-width" value.bind="character.currentCOU" type="number"/>
-          <input class="small-width" value.bind="character.currentINT" type="number"/>
-          <input class="small-width" value.bind="character.currentCHA" type="number"/>
-          <input class="small-width" value.bind="character.currentADR" type="number"/>
-          <input class="small-width" value.bind="character.currentFOR" type="number"/>
-        </div>
-      </div>
-    </div>
-    <div class="row flex flex-horizontal border">
-      <div class="flex flex-grow flex-vertical small-margin">
-        <label>&nbsp;</label>
-        <label>ATTAQUE</label>
-        <label>PARADE</label>
-      </div>
-      <div class="flex flex-shrink flex-vertical">
-        <label class="flex vertical-align horizontal-align">Orig</label>
-        <div class="border">
-          <div class="flex flex-vertical small-border-margin">
-            <input class="small-width" value.bind="character.maxATT" type="number"/>
-            <input class="small-width" value.bind="character.maxPAR" type="number"/>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-shrink flex-vertical small-margin">
-        <label>&nbsp;</label>
-        <small class="modified-padding">modifié...</small>
-        <small class="modified-padding">modifié...</small>
-      </div>
-      <div class="flex flex-grow flex-vertical vertical-align horizontal-align" repeat.for="i of 5">
-        <input class="flex flex-shrink" value.bind="character."type="text" placeholder="Modifié par..."/>
-        <div class="flex flex-grow flex-vertical small-margin vertical-align horizontal-align">
-          <input class="small-width" value.bind="character.currentATT" type="number"/>
-          <input class="small-width" value.bind="character.currentPAR" type="number"/>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <input type="button" class="btn btn-success" value="Save" click.trigger="save()"/>
-      <input type="button" class="btn btn-danger" value="Delete" disabled.bind="!character._id" click.trigger="delete()"/>
     </div>
   </div>
 
