@@ -1,6 +1,6 @@
-import {inject} from 'aurelia-framework';
-import {CharacterDao} from 'character/dao/character-dao';
-import {Router} from 'aurelia-router';
+import { inject } from 'aurelia-framework';
+import { CharacterDao } from 'character/dao/character-dao';
+import { Router } from 'aurelia-router';
 
 @inject(Router, CharacterDao)
 export class Welcome {
@@ -12,16 +12,18 @@ export class Welcome {
   }
 
   activate() {
-    this.characterDao.getAllCharactersName().then(charactersName => {
-      this.charactersName = charactersName;
+    this.characterDao.getAllCharacters().then(characters => {
+      this.characters = characters;
     })
   }
 
   createCharacter() {
-    this.router.navigate("character");
+    this.router.navigate("character/");
   }
 
-  goToCharacter(characterName) {
-    this.router.navigate("character?name=" + characterName);
+  goToCharacter(character) {
+    if (character) {
+      this.router.navigate("character/" + character._id);
+    }
   }
 }

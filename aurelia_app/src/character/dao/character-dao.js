@@ -30,15 +30,43 @@ export class CharacterDao {
       .then(response => response.json());
   }
   
-  getAllCharactersName() {
-    return this.http.fetch('/all' + name)
-      .then(response => response.json());
+  findCharacter(characterId) {
+    return this.http.fetch('/' + characterId, {
+      method: 'get'
+    }).then(response => response.json());
+  }
+  
+  getAllCharacters() {
+    return this.http.fetch('/', {
+      method: 'get'
+    }).then(response => response.json());
+  }
+
+  saveOrUpdateCharacter(character) {
+    if (character._id) { // Already exists in base
+      return this.updateCharacter(character);
+    } else {
+      return this.saveCharacter(character);
+    }
+  }
+
+  updateCharacter(character) {
+    return this.http.fetch('/' + character._id, {
+      method: 'put',
+      body: json(character)
+    });
   }
 
   saveCharacter(character) {
     return this.http.fetch('/', {
       method: 'post',
       body: json(character)
+    });
+  }
+
+  deleteCharacter(character) {
+    return this.http.fetch('/' + character._id, {
+      method: 'delete'
     });
   }
 }

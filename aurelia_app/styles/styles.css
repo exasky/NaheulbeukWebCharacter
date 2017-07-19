@@ -49,6 +49,16 @@ section {
   margin: 0 20px;
 }
 
+img {
+  width: 100%;
+}
+
+input[type="radio"] {
+  -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+  -moz-appearance: checkbox;    /* Firefox */
+  -ms-appearance: checkbox;     /* not currently supported */
+}
+
 .navbar-nav li.loader {
   margin: 12px 24px 0 6px;
 }
@@ -172,4 +182,60 @@ div.au-stagger {
   100% {
     opacity: 1;
   }
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-horizontal {
+  flex-direction: row;
+}
+
+.flex-vertical {
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex: 1;
+}
+
+.flex-shrink {
+  flex: 0;
+}
+
+.flex-horizontal > .flex.vertical-align {
+  align-items: center;
+}
+
+.flex-horizontal > .flex.horizontal-align {
+  justify-content: center;
+}
+
+.flex-vertical > .flex.vertical-align {
+  justify-content: center;
+}
+
+.flex-vertical > .flex.horizontal-align {
+  align-items: center;
+}
+
+input.small-width {
+  width: 50px;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.small-margin {
+  margin: 6px;
+}
+
+.small-border-margin {
+  margin: 5px;
+}
+
+.modified-padding {
+  padding-top: 10px;
 }
