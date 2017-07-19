@@ -236,6 +236,14 @@ div.au-stagger {
   align-items: center;
 }
 
+.flex-space-between {
+  justify-content: space-between;
+}
+
+.flex-space-around {
+  justify-content: space-around;
+}
+
 input.small-width {
   width: 50px;
 }

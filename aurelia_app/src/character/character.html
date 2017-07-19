@@ -13,14 +13,14 @@
               <label>POINTS DE DESTIN</label>
             </div>
             <div class="flex flex-shrink flex-vertical small-margin">
-              <input class="small-width" value.bind="character.level" type="numeric"/>
-              <input class="small-width" value.bind="character.experience" type="numeric"/>
-              <input class="small-width" value.bind="character.destinyPoints" type="numeric"/>
+              <input class="small-width" value.bind="character.level" type="number"/>
+              <input class="small-width" value.bind="character.experience" type="number"/>
+              <input class="small-width" value.bind="character.destinyPoints" type="number"/>
             </div>
           </div>
           <div class="flex flex-vertical">
             <label class="flex flex-grow">MES RICHESSES À MOI QUE J'AI</label>
-            <input class="small-width" value.bind="character.destinyPoints" type="numeric"/>
+            <input class="small-width" value.bind="character.gold" type="number"/>
           </div>
           <div class="flex flex-grow flex-vertical">
             <label>MACHNINS PRÉCIEUX</label>
@@ -43,51 +43,43 @@
               <label>Metier(s)</label>
               <input value.bind="character.jobs" type="text"/>
             </div>
-            <div class="flex-grow">
-              <label>Sexe</label>
-              <label repeat.for="sex of sexs">
+            <div class="flex flex-horizontat flex-shrink">
+              <label class="flex">Sexe</label>
+              <label class="flex" repeat.for="sex of sexs">
                 <input type="radio" value.bind="sex" name="testOptions" checked.bind="character.sex"><i class="fa fa-${sex}"></i> 
               </label>
             </div>
           </div>
-          <div class="border small-margin">
-            <div class="col-lg-3">
+          <div class="flex flex-horizontal flex-space-around border small-margin">
+            <div class="flex flex-space-between flex-horizontal">
               <div class="flex flex-vertical">
-                <label>ENERGIE VITALE (EV-PV)</label>
-                <div class="progress">
+                <label class="flex vertical-align horizontal-align">ENERGIE VITALE (EV-PV)</label>
+                <div class="progress" style="margin-bottom: 5px">
                   <div class="progress-bar" role="progressbar" style="width:100%"></div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-1">
               <div class="flex flex-vertical">
-                <label>Max</label>
+                <label class="flex vertical-align horizontal-align">Max</label>
                 <input class="small-width" value.bind="character.maxPv" type="number"/>
               </div>
-            </div>
-            <div class="col-lg-1">
               <div class="flex flex-vertical">
-                <label>Courant</label>
+                <label class="flex vertical-align horizontal-align">Courant</label>
                 <input class="small-width" value.bind="character.currentPv" type="number"/>
               </div>
             </div>
-            <div class="col-lg-3">
-              <div class="flex flex-vertical">
-                <label>ENERGIE ASTRALE (EA-PA)</label>
-                <div class="progress">
+            <div class="flex flex-horizontal">
+              <div class="flex flex-grow flex-vertical">
+                <label class="flex vertical-align horizontal-align">ENERGIE ASTRALE (EA-PA)</label>
+                <div class="progress" style="margin-bottom: 5px">
                   <div class="progress-bar" role="progressbar" style="width:100%"></div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-1">
               <div class="flex flex-vertical">
-                <label>Max</label>
+                <label class="flex vertical-align horizontal-align">Max</label>
                 <input class="small-width" value.bind="character.maxPa" type="number"/>
               </div>
-            </div>
-            <div class="col-lg-1">
               <div class="flex flex-vertical">
-                <label>Courant</label>
+                <label class="flex vertical-align horizontal-align">Courant</label>
                 <input class="small-width" value.bind="character.currentPa" type="number"/>
               </div>
             </div>
@@ -122,13 +114,13 @@
             </div>
           </div>
           <div class="flex flex-horizontal border small-margin">
-            <div class="flex flex-vertical small-margin">
+            <div class="flex flex-grow flex-vertical small-margin">
               <label>&nbsp;</label>
-              <label>COURAGE (COU)</label>
-              <label>INTELLIGENCE (INT)</label>
-              <label>CHARISME (CHA)</label>
-              <label>ADRESSE (AD)</label>
-              <label>FORCE (FO)</label>
+              <label>COURAGE&nbsp;(COU)</label>
+              <label>INTELLIGENCE&nbsp;(INT)</label>
+              <label>CHARISME&nbsp;(CHA)</label>
+              <label>ADRESSE&nbsp;(AD)</label>
+              <label>FORCE&nbsp;(FO)</label>
             </div>
             <div class="flex flex-shrink flex-vertical">
               <label class="flex vertical-align horizontal-align">Orig</label>
@@ -196,7 +188,7 @@
           </div>
         </div>
         <div class="flex flex-grow flex-vertical">
-          <div class="flex flex-horizontal">
+          <div class="flex flex-horizontal border horizontal-align vertical-align small-margin">
             <div class="flex flex-vertical small-margin">
               <label class="flex vertical-align horizontal-align">ARMURES ET PROTECTIONS</label>
               <small class="flex vertical-align horizontal-align">PR: valeur de protection - RUP: point de rupture</small>
@@ -219,7 +211,7 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-grow flex-horizontal">
+          <div class="flex flex-grow flex-horizontal border horizontal-align vertical-align small-margin">
             <div class="flex flex-vertical small-margin">
               <label class="flex vertical-align horizontal-align">ARMEMENT ET BASTON</label>
               <small class="flex vertical-align horizontal-align">PI: points d'impact - RUP: point de rupture</small>
@@ -242,7 +234,7 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-vertical">
+          <div class="flex flex-vertical border horizontal-align vertical-align small-margin">
             <label>ÉQUIPEMENT, BABIOLES, FRINGUES</label>
             <div class="flex flex-horizontal flex-wrap">
               <div class="flex vertical-align horizontal-align" style="width: calc(100% * (1/3));" repeat.for="item of character.items">

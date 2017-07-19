@@ -33,27 +33,12 @@ export class Character {
   }
 
   initCharacter() {
-    // if (!this.character.characteristics) {
-    //   this.character.characteristics = [];
-    // }
-    // for (var i = this.character.characteristics.length; i < 5; i++) {
-    //   this.character.characteristics[i] = {};
-    // }
-    this.character.characteristics = this.initArray(this.character.characteristics);
-
-    // if (!this.character.fightCharacteristics) {
-    //   this.character.fightCharacteristics = [];
-    // }
-    // for (var i = this.character.fightCharacteristics.length; i < 5; i++) {
-    //   this.character.fightCharacteristics[i] = {};
-    // }
+    this.character.characteristics = this.initArray(this.character.characteristics, 5);
     this.character.fightCharacteristics = this.initArray(this.character.fightCharacteristics, 5);
-
     this.character.defItems = this.initArray(this.character.defItems, 6);
-
     this.character.attItems = this.initArray(this.character.attItems, 4);
     this.character.preciousItems = this.initArray(this.character.preciousItems, 10);
-    this.character.items = this.initArray(this.character.items, 15);
+    this.character.items = this.initArray(this.character.items, 21);
   }
 
   initArray(element, size) {
