@@ -5,7 +5,11 @@ export function configure(aurelia) {
     .standardConfiguration()
     .developmentLogging()
     .plugin('aurelia-bootstrap')
-    .plugin('aurelia-dialog');;
+    .plugin('aurelia-dialog', config => {
+      config.useDefaults();
+      config.settings.lock = false;
+      config.settings.keyboard = true;
+    });
 
   aurelia.start().then(() => aurelia.setRoot());
 }

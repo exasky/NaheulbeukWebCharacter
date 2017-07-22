@@ -1,47 +1,51 @@
 <template>
   <div class="home-container small-text">
     <div class="page-container stackpanel vertical">
-      <div class="stackpanel fit horizontal v-align-center h-align-center">
-        <img class="icon" src="/img/item-bag-icon.png" click.trigger="openBagDialog()"/>
-        <img src="/img/header-line.png" style="max-width: 50%;"/>
-        <img class="icon" src="/img/character-skill-icon.png" click.trigger="openSkillDialog()"/>
-      </div>
+      
       <div class="stackpanel stretch horizontal">
         <div class="stackpanel fit vertical">
-          <div class="stackpanel fit vertical">
-            <table class="table table-condensed">
-              <tr>
-                <td><label>NIVEAU</label></td>
-                <td><input class="small-width" value.bind="character.level" type="number"/></td>
-              </tr>
-              <tr>
-                <td><label>EXPÉRIENCE</label></td>
-                <td><input class="small-width" value.bind="character.experience" type="number"/></td>
-              </tr>
-              <tr>
-                <td><label>POINTS DE DESTIN</label></td>
-                <td><input class="small-width" value.bind="character.destinyPoints" type="number"/></td>
-              </tr>
-              <tr>
-                <td><label>MES RICHESSES À MOI QUE J'AI</label></td>
-                <td><input class="small-width" value.bind="character.gold" type="number"/></td>
-              </tr>
-              <tr>
-                <td colspan="2"><label>MACHINS PRÉCIEUX</label></td>
-              </tr>
-              <tr repeat.for="preciousItem of character.preciousItems">
-                <td colspan="2">
-                  <input class="fill"
-                    value.bind="preciousItems.name"
-                    aubs-popover="body.bind: preciousItems.name; disabled.bind: !preciousItems.name || preciousItems.name.length < 20 ;position: right;"
-                    type="text"/>
-                </td>
-              </tr>
-            </table>
-          </div>
+          <table class="table table-condensed">
+            <tr>
+              <td><label>NIVEAU</label></td>
+              <td><input class="small-width" value.bind="character.level" type="number"/></td>
+            </tr>
+            <tr>
+              <td><label>EXPÉRIENCE</label></td>
+              <td><input class="small-width" value.bind="character.experience" type="number"/></td>
+            </tr>
+            <tr>
+              <td><label>POINTS DE DESTIN</label></td>
+              <td><input class="small-width" value.bind="character.destinyPoints" type="number"/></td>
+            </tr>
+            <tr>
+              <td><label>MES RICHESSES À MOI QUE J'AI</label></td>
+              <td><input class="small-width" value.bind="character.gold" type="number"/></td>
+            </tr>
+            <tr>
+              <td colspan="2"><label>MACHINS PRÉCIEUX</label></td>
+            </tr>
+            <tr repeat.for="preciousItem of character.preciousItems">
+              <td colspan="2">
+                <input class="fill"
+                  value.bind="preciousItems.name"
+                  aubs-popover="body.bind: preciousItems.name; disabled.bind: !preciousItems.name || preciousItems.name.length < 20 ;position: right;"
+                  type="text"/>
+              </td>
+            </tr>
+          </table>
         </div>
-        <div class="stackpanel vertical stretch">
-          <div class="stackpanel border small-margin">
+        <img src="/img/vertical-separator.png"/>
+        <div class="stackpanel vertical stretch border">
+          <div class="stackpanel fit horizontal v-align-center h-align-center">
+            <a href="#" aubs-popover="body: Ouvrir le sac !; position: bottom">
+              <img class="icon" src="/img/item-bag-icon.png" click.trigger="openBagDialog()"/>
+            </a>
+            <img src="/img/header-line.png" style="max-width: 70%;"/>
+            <a href="#" aubs-popover="body: Ouvrir les skills !; position: bottom">
+              <img class="icon" src="/img/character-skill-icon.png" click.trigger="openSkillDialog()"/>
+            </a>
+          </div>
+          <div class="stackpanel small-margin">
             <div class="stackpanel horizontal stretch h-space-around">
               <label>Nom</label>
               <input value.bind="character.name" type="text"/>
@@ -61,152 +65,143 @@
               </label>
             </div>
           </div>
-          <div class="stackpanel horizontal h-space-around border small-margin">
-            <div class="stackpanel horizontal">
-              <div class="stackpanel vertical">
-                <label class="stackpanel horizontal h-align-center">ENERGIE VITALE (EV-PV)</label>
+          <table class="table table-condensed">
+            <tr>
+              <th>ENERGIE VITALE (EV-PV)</th>
+              <th>Max</th>
+              <th>Courant</th>
+              <th>ENERGIE ASTRALE (EA-PA)</th>
+              <th>Max</th>
+              <th>Courant</th>
+            </tr>
+            <tr>
+              <td>
                 <div class="progress" style="margin-bottom: 5px">
                   <div id="pvBar" class="progress-bar" role="progressbar" style="width:0%"></div>
                 </div>
-              </div>
-              <div class="stackpanel vertical">
-                <label class="stackpanel horizontal h-align-center">Max</label>
-                <input class="small-width"
-                        value.bind="character.maxPv"
-                        change.delegate="updatePvBar()"
-                        type="number"/>
-              </div>
-              <div class="stackpanel vertical">
-                <label class="stackpanel horizontal h-align-center">Courant</label>
-                <input class="small-width"
-                        value.bind="character.currentPv"
-                        type="number"
-                        max.bind="character.maxPv"
-                        change.delegate="updatePvBar()"/>
-              </div>
-            </div>
-            <div class="stackpanel horizontal">
-              <div class="stackpanel vertical stretch">
-                <label class="stackpanel horizontal h-align-center">ENERGIE ASTRALE (EA-PA)</label>
+              </td>
+              <td>
+                <input class="small-width" value.bind="character.maxPv" change.delegate="updatePvBar()" type="number"/>
+              </td>
+              <td>
+                <input class="small-width" value.bind="character.currentPv" type="number"
+                      max.bind="character.maxPv" change.delegate="updatePvBar()"/>
+              </td>
+              <td>
                 <div class="progress" style="margin-bottom: 5px">
                   <div id="paBar" class="progress-bar" role="progressbar" style="width:0%"></div>
                 </div>
-              </div>
-              <div class="stackpanel vertical">
-                <label class="stackpanel horizontal h-align-center">Max</label>
-                <input class="small-width"
-                        value.bind="character.maxPa"
-                        change.delegate="updatePaBar()"
-                        type="number"/>
-              </div>
-              <div class="stackpanel vertical">
-                <label class="stackpanel horizontal h-align-center">Courant</label>
-                <input class="small-width"
-                        value.bind="character.currentPa"
-                        change.delegate="updatePaBar()"
-                        max.bind="character.maxPa"
-                        type="number"/>
-              </div>
-            </div>
-          </div>
-          <div class="stackpanel horizontal fit h-space-around border small-margin">
-            <div class="stackpanel horizontal stretch">
-              <div class="stackpanel vertical">
-                <label>MAGIE PHYS.</label>
+              </td>
+              <td>
+                <input class="small-width" value.bind="character.maxPa" change.delegate="updatePaBar()" type="number"/>
+              </td>
+              <td>
+                <input class="small-width" value.bind="character.currentPa" change.delegate="updatePaBar()"
+                      max.bind="character.maxPa" type="number"/>
+              </td>
+            </tr>
+          </table>
+          <table class="table table-condensed">
+            <tr>
+              <td>
+                <label>MAGIE PHYS.</label><br/>
                 <small>Moyenne INT et AD</small>
-              </div>
-              <div class="stackpanel horizontal v-align-center h-align-center stretch">
+              </td>
+              <td>
                 <input class="small-width" value.bind="physMagic" type="number"/>
-              </div>
-            </div>
-            <div class="stackpanel horizontal stretch">
-              <div class="stackpanel vertical">
-                <label>MAGIE PSY.</label>
+              </td>
+              <td>
+                <label>MAGIE PSY.</label><br/>
                 <small>Moyenne INT et CHA</small>
-              </div>
-              <div class="stackpanel horizontal v-align-center h-align-center stretch">
+              </td>
+              <td>
                 <input class="small-width" value.bind="psyMagic" type="number"/>
-              </div>
-            </div>
-            <div class="stackpanel horizontal stretch">
-              <div class="stackpanel vertical">
-                <label>RESIST MAGIE.</label>
+              </td>
+              <td>
+                <label>RESIST MAGIE.</label><br/>
                 <small>Moyenne COU, INT et FO</small>
-              </div>
-              <div class="stackpanel horizontal v-align-center h-align-center stretch">
+              </td>
+              <td>
                 <input class="small-width" value.bind="resistMagic" type="number"/>
-              </div>
-            </div>
-          </div>
-          <div class="stackpanel fit border small-margin">
-            <table class="stackpanel horizontal">
-              <tbody class="stackpanel horizontal">
-                <tr class="stackpanel vertical small-margin">
-                  <td><label>&nbsp;</label></td>
-                  <td><label>COURAGE&nbsp;(COU)</label></td>
-                  <td><label>INTELLIGENCE&nbsp;(INT)</label></td>
-                  <td><label>CHARISME&nbsp;(CHA)</label></td>
-                  <td><label>ADRESSE&nbsp;(AD)</label></td>
-                  <td><label>FORCE&nbsp;(FO)</label></td>
-                </tr>
-                <tr class="stackpanel vertical">
-                  <td><label class="">Orig</label></td>
-                  <td class="top-cell-border"><input class="small-width" value.bind="character.maxCOU" type="number"/></td>
-                  <td class="regular-cell-border"><input class="small-width" value.bind="character.maxINT" type="number"/></td>
-                  <td class="regular-cell-border"><input class="small-width" value.bind="character.maxCHA" type="number"/></td>
-                  <td class="regular-cell-border"><input class="small-width" value.bind="character.maxADR" type="number"/></td>
-                  <td class="bottom-cell-border"><input class="small-width" value.bind="character.maxFOR" type="number"/></td>
-                </tr>
-                <tr class="stackpanel vertical">
-                  <td><label>&nbsp;</label></td>
-                  <td class="modified-padding"><small>modifié...</small></td>
-                  <td class="modified-padding"><small>modifiée...</small></td>
-                  <td class="modified-padding"><small>modifié...</small></td>
-                  <td class="modified-padding"><small>modifiée...</small></td>
-                  <td class="modified-padding"><small>modifiée...</small></td>
-                </tr>
-                <tr class="stackpanel vertical v-align-center h-align-center" repeat.for="char of character.characteristics">
-                  <td>
-                    <input class="medium-width" value.bind="char.item" type="text" placeholder="Modifié par..."/>
-                  </td>
-                  <td><input class="small-width" value.bind="char.currentCOU" type="number"/></td>
-                  <td><input class="small-width" value.bind="char.currentINT" type="number"/></td>
-                  <td><input class="small-width" value.bind="char.currentCHA" type="number"/></td>
-                  <td><input class="small-width" value.bind="char.currentADR" type="number"/></td>
-                  <td><input class="small-width" value.bind="char.currentFOR" type="number"/></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="stackpanel fit border small-margin">
-            <table class="stackpanel stretch horizontal">
-              <tbody class="stackpanel stretch horizontal">
-                <tr class="stackpanel vertical stretch small-margin">
-                  <td><label>&nbsp;</label></td>
-                  <td><label>ATTAQUE</label></td>
-                  <td><label>PARADE</label></td>
-                </tr>
-                <tr class="stackpanel vertical">
-                  <td><label class="">Orig</label></td>
-                  <td class="top-cell-border"><input class="small-width" value.bind="character.maxATT" type="number"/></td>
-                  <td class="bottom-cell-border"><input class="small-width" value.bind="character.maxPAR" type="number"/></td>
-                </tr>
-                <tr class="stackpanel vertical">
-                  <td><label>&nbsp;</label></td>
-                  <td class="modified-padding"><small>modifiée...</small></td>
-                  <td class="modified-padding"><small>modifiée...</small></td>
-                </tr>
-                <tr class="stackpanel vertical v-align-center h-align-center" repeat.for="fightChar of character.fightCharacteristics">
-                  <td>
-                    <input class="medium-width" value.bind="fightChar.item" type="text" placeholder="Modifié par..."/>
-                  </td>
-                  <td><input class="small-width" value.bind="fightChar.currentATT" type="number"/></td>
-                  <td><input class="small-width" value.bind="fightChar.currentPAR" type="number"/></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="stackpanel horizontal h-align-center">
+              </td>
+            </tr>
+          </table>
+          <table class="table table-condensed">
+            <tr>
+              <td></td>
+              <th>Orig.</th>
+              <td></td>
+              <td repeat.for="char of character.characteristics">
+                <input class="medium-width" value.bind="char.item" type="text" placeholder="Modifié par..."/>
+              </td>
+            </tr>
+            <tr>
+              <th>COURAGE&nbsp;(COU)</th>
+              <td class="top-cell-border"><input class="small-width" value.bind="character.maxCOU" type="number"/></td>
+              <td><small>modifié...</small></td>
+              <td repeat.for="char of character.characteristics">
+                <input class="small-width" value.bind="char.currentCOU" type="number"/>
+              </td>
+            </tr>
+            <tr>
+              <th>INTELLIGENCE&nbsp;(INT)</th>
+              <td class="top-cell-border"><input class="small-width" value.bind="character.maxINT" type="number"/></td>
+              <td><small>modifiée...</small></td>
+              <td repeat.for="char of character.characteristics">
+                <input class="small-width" value.bind="char.currentINT" type="number"/>
+              </td>
+            </tr>
+            <tr>
+              <th>CHARISME&nbsp;(CHA)</th>
+              <td class="top-cell-border"><input class="small-width" value.bind="character.maxCHA" type="number"/></td>
+              <td><small>modifié...</small></td>
+              <td repeat.for="char of character.characteristics">
+                <input class="small-width" value.bind="char.currentCHA" type="number"/>
+              </td>
+            </tr>
+            <tr>
+              <th>ADRESSE&nbsp;(AD)</th>
+              <td class="top-cell-border"><input class="small-width" value.bind="character.maxADR" type="number"/></td>
+              <td><small>modifiée...</small></td>
+              <td repeat.for="char of character.characteristics">
+                <input class="small-width" value.bind="char.currentADR" type="number"/>
+              </td>
+            </tr>
+            <tr>
+              <th>FORCE&nbsp;(FO)</th>
+              <td class="top-cell-border"><input class="small-width" value.bind="character.maxFOR" type="number"/></td>
+              <td><small>modifiée...</small></td>
+              <td repeat.for="char of character.characteristics">
+                <input class="small-width" value.bind="char.currentFOR" type="number"/>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <th>Orig.</th>
+              <td></td>
+              <td repeat.for="fightChar of character.fightCharacteristics">
+                <input class="medium-width" value.bind="fightChar.item" type="text" placeholder="Modifié par..."/>
+              </td>
+            </tr>
+            <tr>
+              <th>ATTAQUE</th>
+              <td class="top-cell-border"><input class="small-width" value.bind="character.maxATT" type="number"/></td>
+              <td><small>modifiée...</small></td>
+              <td repeat.for="fightChar of character.fightCharacteristics">
+                <input class="small-width" value.bind="fightChar.currentATT" type="number"/>
+              </td>
+            </tr>
+            <tr>
+              <th>PARADE</th>
+              <td class="top-cell-border"><input class="small-width" value.bind="character.maxPAR" type="number"/></td>
+              <td><small>modifiée...</small></td>
+              <td repeat.for="fightChar of character.fightCharacteristics">
+                <input class="small-width" value.bind="fightChar.currentPAR" type="number"/>
+              </td>
+            </tr>
+          </table>
+          <br/>
+          <div class="stackpanel horizontal h-align-center h-space-around">
             <input type="button" class="btn btn-info" value="Retour à la liste des personnages" click.trigger="goToHome()"/>
             <input type="button" class="btn btn-success" value="Sauvegarder" click.trigger="save()"/>
             <input type="button" class="btn btn-danger" value="Supprimer" disabled.bind="!character._id" click.trigger="delete()"/>
@@ -214,7 +209,7 @@
         </div>
         <div class="stackpanel vertical stretch">
           <div class="stackpanel horizontal fit h-align-center v-align-center">
-            <table>
+            <table class="table table-condensed">
               <tr>
                 <td class="center-text"><label>ARMURES ET PROTECTIONS</label><br/>
                   <small>PR: valeur de protection - RUP: point de rupture</small>
@@ -234,7 +229,7 @@
             </table>
           </div>
           <div class="stackpanel horizontal fit h-align-center v-align-center">
-            <table>
+            <table class="table table-condensed">
               <tr>
                 <td class="center-text"><label>ARMEMENT ET BASTON</label><br/>
                   <small>PI: points d'impact - RUP: point de rupture</small>

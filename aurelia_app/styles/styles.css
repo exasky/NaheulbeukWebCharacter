@@ -49,9 +49,9 @@ input.medium-width {
   width: 100px;
 }
 
-.border {
+ .border {
   border: 1px solid black;
-}
+} 
 
 .top-cell-border {
   border-top: 1px black solid;
@@ -103,10 +103,19 @@ input.medium-width {
 }
 
 /* OVERIDE */
+.table {
+  margin-bottom: 0px;
+}
+
 ux-dialog-overlay {
   background-color: black;
 }
 
 .ux-dialog-open ux-dialog-overlay.active {
   opacity: 0.5;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  vertical-align: middle;
+  text-align: center;
 }
