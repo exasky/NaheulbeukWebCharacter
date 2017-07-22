@@ -4,11 +4,12 @@ import { DialogController } from 'aurelia-dialog';
 @inject(DialogController)
 export class ConfirmDialog {
 
-    constructor(dialogController){
-        this.dialogController = dialogController;
-    }
+  constructor(dialogController) {
+    this.dialogController = dialogController;
+  }
 
-    activate(character){
-        this.character = character;
-    }
+  activate(model) {
+    this.title = model.title;
+    this.text = model.text;
+  }
 }

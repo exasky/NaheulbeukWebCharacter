@@ -3,7 +3,7 @@
     <div class="page-container stackpanel vertical">
       <div class="stackpanel fit horizontal v-align-center h-align-center">
         <img class="icon" src="/img/item-bag-icon.png" click.trigger="openBagDialog()"/>
-        <img src="/img/header-line.png" style="max-width: 75%;"/>
+        <img src="/img/header-line.png" style="max-width: 50%;"/>
         <img class="icon" src="/img/character-skill-icon.png" click.trigger="openSkillDialog()"/>
       </div>
       <div class="stackpanel stretch horizontal">
@@ -40,7 +40,7 @@
             </table>
           </div>
         </div>
-        <div class="stackpanel vertical stretch" style="flex-grow: 2">
+        <div class="stackpanel vertical stretch">
           <div class="stackpanel border small-margin">
             <div class="stackpanel horizontal stretch h-space-around">
               <label>Nom</label>
@@ -207,6 +207,7 @@
             </table>
           </div>
           <div class="stackpanel horizontal h-align-center">
+            <input type="button" class="btn btn-info" value="Retour à la liste des personnages" click.trigger="goToHome()"/>
             <input type="button" class="btn btn-success" value="Sauvegarder" click.trigger="save()"/>
             <input type="button" class="btn btn-danger" value="Supprimer" disabled.bind="!character._id" click.trigger="delete()"/>
           </div>

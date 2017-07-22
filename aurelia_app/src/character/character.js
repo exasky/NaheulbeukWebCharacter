@@ -11,6 +11,7 @@ import 'toastr';
 export class Character {
   sexs = ['mars', 'venus'];
 
+  unmodifiedCharacter;
   character;
 
   constructor(router, dialogService, characterDao) {
@@ -51,6 +52,11 @@ export class Character {
     this.character.skills = this.initArray(this.character.skills, 15);
     this.updatePvBar();
     this.updatePaBar();
+    this.initUnmodifiedCharacter();
+  }
+
+  initUnmodifiedCharacter() {
+    this.unmodifiedCharacter = JSON.parse(JSON.stringify(this.character));
   }
 
   initArray(element, size) {
@@ -63,17 +69,44 @@ export class Character {
     return element;
   }
 
+  goToHome() {
+    if (JSON.stringify(this.unmodifiedCharacter) !== JSON.stringify(this.character)) {
+      this.dialogService.open({
+        viewModel: ConfirmDialog,
+        model: {
+          title: null,
+          text: "Le personnage n'a pas été sauverardé. Voulez-vous continuer? "
+        }
+      }).whenClosed(response => {
+        if (!response.wasCancelled) {
+          this.router.navigate("/");
+        }
+      })
+    } else {
+      this.router.navigate("/");
+    }
+  }
+
   save() {
     this.characterDao.saveOrUpdateCharacter(this.character).then(result => {
       toastr.success("Personnage sauvé");
-      this.navigateOnSave(result);
-    })
+      if (!this.character._id) { // If we are on save
+        result.json().then(characterId => {
+          this.router.navigate("/character/" + characterId);
+        });
+      } else {
+        this.initUnmodifiedCharacter();
+      }
+    });
   }
 
   delete() {
     this.dialogService.open({
       viewModel: ConfirmDialog,
-      model: this.character
+      model: {
+        title: "Suppression de personnage",
+        text: "Êtes-vous sûr de vouloir supprimer " + this.character.name
+      }
     }).whenClosed(response => {
       if (!response.wasCancelled) {
         this.characterDao.deleteCharacter(this.character).then(result => {
@@ -81,15 +114,7 @@ export class Character {
           this.router.navigate("/");
         });
       }
-    })
-  }
-
-  navigateOnSave(resultOfSave) {
-    if (!this.character._id) { // If we are on save
-      resultOfSave.json().then(characterId => {
-        this.router.navigate("/character/" + characterId);
-      });
-    }
+    });
   }
 
   updatePvBar() {
