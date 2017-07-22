@@ -1,247 +1,268 @@
 <template>
-  <div class="flex-container small-text">
-    <div class="flex flex-vertical">
-      <div class="flex vertical-align horizontal-align">
+  <div class="home-container small-text">
+    <div class="page-container stackpanel vertical">
+      <div class="stackpanel fit horizontal v-align-center h-align-center">
+        <img class="icon" src="/img/item-bag-icon.png" click.trigger="openBagDialog()"/>
         <img src="/img/header-line.png" style="max-width: 75%;"/>
+        <img class="icon" src="/img/character-skill-icon.png" click.trigger="openSkillDialog()"/>
       </div>
-      <div class="flex flex-horizontal">
-        <div class="flex flex-shrink flex-vertical">
-          <div class="flex flex-horizontal border">
-            <div class="flex flex-shrink flex-vertical small-margin">
-              <label>NIVEAU</label>
-              <label>EXPÉRIENCE</label>
-              <label>POINTS DE DESTIN</label>
-            </div>
-            <div class="flex flex-shrink flex-vertical small-margin">
-              <input class="small-width" value.bind="character.level" type="number"/>
-              <input class="small-width" value.bind="character.experience" type="number"/>
-              <input class="small-width" value.bind="character.destinyPoints" type="number"/>
-            </div>
-          </div>
-          <div class="flex flex-vertical">
-            <label class="flex flex-grow">MES RICHESSES À MOI QUE J'AI</label>
-            <input class="small-width" value.bind="character.gold" type="number"/>
-          </div>
-          <div class="flex flex-grow flex-vertical">
-            <label>MACHNINS PRÉCIEUX</label>
-            <div class="flex vertical-align horizontal-align" repeat.for="preciousItem of character.preciousItems">
-              <input value.bind="preciousItems.name" type="text"/>
-            </div>
+      <div class="stackpanel stretch horizontal">
+        <div class="stackpanel fit vertical">
+          <div class="stackpanel fit vertical">
+            <table class="table table-condensed">
+              <tr>
+                <td><label>NIVEAU</label></td>
+                <td><input class="small-width" value.bind="character.level" type="number"/></td>
+              </tr>
+              <tr>
+                <td><label>EXPÉRIENCE</label></td>
+                <td><input class="small-width" value.bind="character.experience" type="number"/></td>
+              </tr>
+              <tr>
+                <td><label>POINTS DE DESTIN</label></td>
+                <td><input class="small-width" value.bind="character.destinyPoints" type="number"/></td>
+              </tr>
+              <tr>
+                <td><label>MES RICHESSES À MOI QUE J'AI</label></td>
+                <td><input class="small-width" value.bind="character.gold" type="number"/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><label>MACHINS PRÉCIEUX</label></td>
+              </tr>
+              <tr repeat.for="preciousItem of character.preciousItems">
+                <td colspan="2">
+                  <input class="fill"
+                    value.bind="preciousItems.name"
+                    aubs-popover="body.bind: preciousItems.name; disabled.bind: !preciousItems.name || preciousItems.name.length < 20 ;position: right;"
+                    type="text"/>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
-        <div class="flex flex-grow flex-vertical" style="flex-grow: 2">
-          <div class="flex border small-margin">
-            <div class="flex-grow">
+        <div class="stackpanel vertical stretch" style="flex-grow: 2">
+          <div class="stackpanel border small-margin">
+            <div class="stackpanel stretch">
               <label>Nom</label>
               <input value.bind="character.name" type="text"/>
             </div>
-            <div class="flex-grow">
+            <div class="stackpanel stretch">
               <label>Origine</label>
               <input value.bind="character.origin" type="text"/>
             </div>
-            <div class="flex-grow">
+            <div class="stackpanel stretch">
               <label>Metier(s)</label>
               <input value.bind="character.jobs" type="text"/>
             </div>
-            <div class="flex flex-horizontat flex-shrink">
-              <label class="flex">Sexe</label>
-              <label class="flex" repeat.for="sex of sexs">
+            <div class="stackpanel fit horizontal">
+              <label>Sexe</label>
+              <label repeat.for="sex of sexs">
                 <input type="radio" value.bind="sex" name="testOptions" checked.bind="character.sex"><i class="fa fa-${sex}"></i> 
               </label>
             </div>
           </div>
-          <div class="flex flex-horizontal flex-space-around border small-margin">
-            <div class="flex flex-space-between flex-horizontal">
-              <div class="flex flex-vertical">
-                <label class="flex vertical-align horizontal-align">ENERGIE VITALE (EV-PV)</label>
+          <div class="stackpanel horizontal h-space-around border small-margin">
+            <div class="stackpanel horizontal">
+              <div class="stackpanel vertical">
+                <label class="stackpanel horizontal h-align-center">ENERGIE VITALE (EV-PV)</label>
                 <div class="progress" style="margin-bottom: 5px">
-                  <div class="progress-bar" role="progressbar" style="width:100%"></div>
+                  <div id="pvBar" class="progress-bar" role="progressbar" style="width:0%"></div>
                 </div>
               </div>
-              <div class="flex flex-vertical">
-                <label class="flex vertical-align horizontal-align">Max</label>
-                <input class="small-width" value.bind="character.maxPv" type="number"/>
+              <div class="stackpanel vertical">
+                <label class="stackpanel horizontal h-align-center">Max</label>
+                <input class="small-width"
+                        value.bind="character.maxPv"
+                        change.delegate="updatePvBar()"
+                        type="number"/>
               </div>
-              <div class="flex flex-vertical">
-                <label class="flex vertical-align horizontal-align">Courant</label>
-                <input class="small-width" value.bind="character.currentPv" type="number"/>
+              <div class="stackpanel vertical">
+                <label class="stackpanel horizontal h-align-center">Courant</label>
+                <input class="small-width"
+                        value.bind="character.currentPv"
+                        type="number"
+                        max.bind="character.maxPv"
+                        change.delegate="updatePvBar()"/>
               </div>
             </div>
-            <div class="flex flex-horizontal">
-              <div class="flex flex-grow flex-vertical">
-                <label class="flex vertical-align horizontal-align">ENERGIE ASTRALE (EA-PA)</label>
+            <div class="stackpanel horizontal">
+              <div class="stackpanel vertical stretch">
+                <label class="stackpanel horizontal h-align-center">ENERGIE ASTRALE (EA-PA)</label>
                 <div class="progress" style="margin-bottom: 5px">
-                  <div class="progress-bar" role="progressbar" style="width:100%"></div>
+                  <div id="paBar" class="progress-bar" role="progressbar" style="width:0%"></div>
                 </div>
               </div>
-              <div class="flex flex-vertical">
-                <label class="flex vertical-align horizontal-align">Max</label>
-                <input class="small-width" value.bind="character.maxPa" type="number"/>
+              <div class="stackpanel vertical">
+                <label class="stackpanel horizontal h-align-center">Max</label>
+                <input class="small-width"
+                        value.bind="character.maxPa"
+                        change.delegate="updatePaBar()"
+                        type="number"/>
               </div>
-              <div class="flex flex-vertical">
-                <label class="flex vertical-align horizontal-align">Courant</label>
-                <input class="small-width" value.bind="character.currentPa" type="number"/>
+              <div class="stackpanel vertical">
+                <label class="stackpanel horizontal h-align-center">Courant</label>
+                <input class="small-width"
+                        value.bind="character.currentPa"
+                        change.delegate="updatePaBar()"
+                        max.bind="character.maxPa"
+                        type="number"/>
               </div>
             </div>
           </div>
-          <div class="flex border small-margin">
-            <div class="flex flex-grow flex-horizontal">
-              <div class="flex flex-vertical">
+          <div class="stackpanel horizontal fit border small-margin">
+            <div class="stackpanel horizontal stretch">
+              <div class="stackpanel vertical">
                 <label>MAGIE PHYS.</label>
                 <small>Moyenne INT et AD</small>
               </div>
-              <div class="flex vertical-align horizontal-align flex-grow">
+              <div class="stackpanel horizontal v-align-center h-align-center stretch">
                 <input class="small-width" value.bind="physMagic" type="number"/>
               </div>
             </div>
-            <div class="flex flex-grow flex-horizontal">
-              <div class="flex flex-vertical">
+            <div class="stackpanel horizontal stretch">
+              <div class="stackpanel vertical">
                 <label>MAGIE PSY.</label>
                 <small>Moyenne INT et CHA</small>
               </div>
-              <div class="flex vertical-align horizontal-align flex-grow">
+              <div class="stackpanel horizontal v-align-center h-align-center stretch">
                 <input class="small-width" value.bind="psyMagic" type="number"/>
               </div>
             </div>
-            <div class="flex flex-grow flex-horizontal">
-              <div class="flex flex-vertical">
+            <div class="stackpanel horizontal stretch">
+              <div class="stackpanel vertical">
                 <label>RESIST MAGIE.</label>
                 <small>Moyenne COU, INT et FO</small>
               </div>
-              <div class="flex vertical-align horizontal-align flex-grow">
+              <div class="stackpanel horizontal v-align-center h-align-center stretch">
                 <input class="small-width" value.bind="resistMagic" type="number"/>
               </div>
             </div>
           </div>
-          <div class="flex flex-horizontal border small-margin">
-            <div class="flex flex-grow flex-vertical small-margin">
-              <label>&nbsp;</label>
-              <label>COURAGE&nbsp;(COU)</label>
-              <label>INTELLIGENCE&nbsp;(INT)</label>
-              <label>CHARISME&nbsp;(CHA)</label>
-              <label>ADRESSE&nbsp;(AD)</label>
-              <label>FORCE&nbsp;(FO)</label>
-            </div>
-            <div class="flex flex-shrink flex-vertical">
-              <label class="flex vertical-align horizontal-align">Orig</label>
-              <div class="border">
-                <div class="flex flex-vertical small-border-margin">
-                  <input class="small-width" value.bind="character.maxCOU" type="number"/>
-                  <input class="small-width" value.bind="character.maxINT" type="number"/>
-                  <input class="small-width" value.bind="character.maxCHA" type="number"/>
-                  <input class="small-width" value.bind="character.maxADR" type="number"/>
-                  <input class="small-width" value.bind="character.maxFOR" type="number"/>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-shrink flex-vertical small-margin">
-              <label>&nbsp;</label>
-              <small class="modified-padding">modifié...</small>
-              <small class="modified-padding">modifiée...</small>
-              <small class="modified-padding">modifié...</small>
-              <small class="modified-padding">modifiée...</small>
-              <small class="modified-padding">modifiée...</small>
-            </div>
-            <div class="flex flex-shrink flex-vertical vertical-align horizontal-align" repeat.for="char of character.characteristics">
-              ${i}
-              <input class="flex flex-shrink medium-width" value.bind="char.item"type="text" placeholder="Modifié par..."/>
-              <div class="flex flex-grow flex-vertical small-margin vertical-align horizontal-align">
-                <input class="small-width" value.bind="char.currentCOU" type="number"/>
-                <input class="small-width" value.bind="char.currentINT" type="number"/>
-                <input class="small-width" value.bind="char.currentCHA" type="number"/>
-                <input class="small-width" value.bind="char.currentADR" type="number"/>
-                <input class="small-width" value.bind="char.currentFOR" type="number"/>
-              </div>
-            </div>
+          <div class="stackpanel fit border small-margin">
+            <table class="stackpanel horizontal">
+              <tbody class="stackpanel horizontal">
+                <tr class="stackpanel vertical small-margin">
+                  <td><label>&nbsp;</label></td>
+                  <td><label>COURAGE&nbsp;(COU)</label></td>
+                  <td><label>INTELLIGENCE&nbsp;(INT)</label></td>
+                  <td><label>CHARISME&nbsp;(CHA)</label></td>
+                  <td><label>ADRESSE&nbsp;(AD)</label></td>
+                  <td><label>FORCE&nbsp;(FO)</label></td>
+                </tr>
+                <tr class="stackpanel vertical">
+                  <td><label class="">Orig</label></td>
+                  <td class="top-cell-border"><input class="small-width" value.bind="character.maxCOU" type="number"/></td>
+                  <td class="regular-cell-border"><input class="small-width" value.bind="character.maxINT" type="number"/></td>
+                  <td class="regular-cell-border"><input class="small-width" value.bind="character.maxCHA" type="number"/></td>
+                  <td class="regular-cell-border"><input class="small-width" value.bind="character.maxADR" type="number"/></td>
+                  <td class="bottom-cell-border"><input class="small-width" value.bind="character.maxFOR" type="number"/></td>
+                </tr>
+                <tr class="stackpanel vertical">
+                  <td><label>&nbsp;</label></td>
+                  <td class="modified-padding"><small>modifié...</small></td>
+                  <td class="modified-padding"><small>modifiée...</small></td>
+                  <td class="modified-padding"><small>modifié...</small></td>
+                  <td class="modified-padding"><small>modifiée...</small></td>
+                  <td class="modified-padding"><small>modifiée...</small></td>
+                </tr>
+                <tr class="stackpanel vertical v-align-center h-align-center" repeat.for="char of character.characteristics">
+                  <td>
+                    <input class="medium-width" value.bind="char.item" type="text" placeholder="Modifié par..."/>
+                  </td>
+                  <td><input class="small-width" value.bind="char.currentCOU" type="number"/></td>
+                  <td><input class="small-width" value.bind="char.currentINT" type="number"/></td>
+                  <td><input class="small-width" value.bind="char.currentCHA" type="number"/></td>
+                  <td><input class="small-width" value.bind="char.currentADR" type="number"/></td>
+                  <td><input class="small-width" value.bind="char.currentFOR" type="number"/></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="flex flex-horizontal border small-margin">
-            <div class="flex flex-vertical small-margin">
-              <label>&nbsp;</label>
-              <label>ATTAQUE</label>
-              <label>PARADE</label>
-            </div>
-            <div class="flex flex-shrink flex-vertical">
-              <label class="flex vertical-align horizontal-align">Orig</label>
-              <div class="border">
-                <div class="flex flex-vertical small-border-margin">
-                  <input class="small-width" value.bind="character.maxATT" type="number"/>
-                  <input class="small-width" value.bind="character.maxPAR" type="number"/>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-shrink flex-vertical small-margin">
-              <label>&nbsp;</label>
-              <small class="modified-padding">modifiée...</small>
-              <small class="modified-padding">modifiée...</small>
-            </div>
-            <div class="flex flex-shrink flex-vertical vertical-align horizontal-align" repeat.for="fightChar of character.fightCharacteristics">
-              <input class="flex flex-shrink medium-width" value.bind="fightChar.item"type="text" placeholder="Modifié par..."/>
-              <div class="flex flex-grow flex-vertical small-margin vertical-align horizontal-align">
-                <input class="small-width" value.bind="fightChar.currentATT" type="number"/>
-                <input class="small-width" value.bind="fightChar.currentPAR" type="number"/>
-              </div>
-            </div>
+          <div class="stackpanel fit border small-margin">
+            <table class="stackpanel stretch horizontal">
+              <tbody class="stackpanel stretch horizontal">
+                <tr class="stackpanel vertical stretch small-margin">
+                  <td><label>&nbsp;</label></td>
+                  <td><label>ATTAQUE</label></td>
+                  <td><label>PARADE</label></td>
+                </tr>
+                <tr class="stackpanel vertical">
+                  <td><label class="">Orig</label></td>
+                  <td class="top-cell-border"><input class="small-width" value.bind="character.maxATT" type="number"/></td>
+                  <td class="bottom-cell-border"><input class="small-width" value.bind="character.maxPAR" type="number"/></td>
+                </tr>
+                <tr class="stackpanel vertical">
+                  <td><label>&nbsp;</label></td>
+                  <td class="modified-padding"><small>modifiée...</small></td>
+                  <td class="modified-padding"><small>modifiée...</small></td>
+                </tr>
+                <tr class="stackpanel vertical v-align-center h-align-center" repeat.for="fightChar of character.fightCharacteristics">
+                  <td>
+                    <input class="medium-width" value.bind="fightChar.item" type="text" placeholder="Modifié par..."/>
+                  </td>
+                  <td><input class="small-width" value.bind="fightChar.currentATT" type="number"/></td>
+                  <td><input class="small-width" value.bind="fightChar.currentPAR" type="number"/></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div class="flex flex-horizontal">
             <input type="button" class="btn btn-success" value="Save" click.trigger="save()"/>
             <input type="button" class="btn btn-danger" value="Delete" disabled.bind="!character._id" click.trigger="delete()"/>
           </div>
         </div>
-        <div class="flex flex-grow flex-vertical">
-          <div class="flex flex-horizontal border horizontal-align vertical-align small-margin">
-            <div class="flex flex-vertical small-margin">
-              <label class="flex vertical-align horizontal-align">ARMURES ET PROTECTIONS</label>
-              <small class="flex vertical-align horizontal-align">PR: valeur de protection - RUP: point de rupture</small>
-              <div class="flex vertical-align horizontal-align" repeat.for="defItem of character.defItems">
-                <input class="flex-grow" value.bind="defItem.name" type="text"/>
-              </div>
-            </div>
-            <div class="flex flex-vertical small-margin">
-              <label class="flex vertical-align horizontal-align">PR</label>
-              <small>&nbsp;</small>
-              <div class="flex vertical-align horizontal-align" repeat.for="defItem of character.defItems">
-                <input class="small-width" value.bind="defItem.protectionPoint" type="number"/>
-              </div>
-            </div>
-            <div class="flex flex-vertical small-margin">
-              <label class="flex vertical-align horizontal-align">RUP</label>
-              <small>&nbsp;</small>
-              <div class="flex vertical-align horizontal-align" repeat.for="defItem of character.defItems">
-                <input class="small-width" value.bind="defItem.breakPoint" type="number"/>
-              </div>
-            </div>
+        <div class="stackpanel vertical stretch">
+          <div class="stackpanel horizontal fit h-align-center v-align-center">
+            <table>
+              <tr>
+                <td class="center-text"><label>ARMURES ET PROTECTIONS</label><br/>
+                  <small>PR: valeur de protection - RUP: point de rupture</small>
+                </td>
+                <th class="center-text">PR</th>
+                <th class="center-text">RUP</th>
+              </tr>
+              <tr repeat.for="defItem of character.defItems">
+                <td>
+                  <input class="fill" 
+                        aubs-popover="body.bind: defItem.name; disabled.bind: !defItem.name || defItem.name.length < 25 ;position: top;"
+                        value.bind="defItem.name" type="text"/>
+                </td>
+                <td><input class="small-width" value.bind="defItem.protectionPoint" type="number"/></td>
+                <td><input class="small-width" value.bind="defItem.breakPoint" type="number"/></td>
+              </tr>
+            </table>
           </div>
-          <div class="flex flex-grow flex-horizontal border horizontal-align vertical-align small-margin">
-            <div class="flex flex-vertical small-margin">
-              <label class="flex vertical-align horizontal-align">ARMEMENT ET BASTON</label>
-              <small class="flex vertical-align horizontal-align">PI: points d'impact - RUP: point de rupture</small>
-              <div class="flex vertical-align horizontal-align" repeat.for="attItem of character.attItems">
-                <input class="flex-grow" value.bind="attItem.name" type="text"/>
-              </div>
-            </div>
-            <div class="flex flex-vertical small-margin">
-              <label class="flex vertical-align horizontal-align">PI</label>
-              <small>&nbsp;</small>
-              <div class="flex vertical-align horizontal-align" repeat.for="attItem of character.attItems">
-                <input class="small-width" value.bind="attItem.damagePoint" type="number"/>
-              </div>
-            </div>
-            <div class="flex flex-vertical small-margin">
-              <label class="flex vertical-align horizontal-align">RUP</label>
-              <small>&nbsp;</small>
-              <div class="flex vertical-align horizontal-align" repeat.for="attItem of character.attItems">
-                <input class="small-width" value.bind="attItem.breakPoint" type="number"/>
-              </div>
-            </div>
+          <div class="stackpanel horizontal fit h-align-center v-align-center">
+            <table>
+              <tr>
+                <td class="center-text"><label>ARMEMENT ET BASTON</label><br/>
+                  <small>PI: points d'impact - RUP: point de rupture</small>
+                </td>
+                <th class="center-text">PI</th>
+                <th class="center-text">RUP</th>
+              </tr>
+              <tr repeat.for="attItem of character.attItems">
+                <td>
+                  <input class="fill" 
+                        aubs-popover="body.bind: attItem.name; disabled.bind: !attItem.name || attItem.name.length < 25 ;position: top;"
+                        value.bind="attItem.name" type="text"/>
+                </td>
+                <td><input class="small-width" value.bind="attItem.damagePoint" type="number"/></td>
+                <td><input class="small-width" value.bind="attItem.breakPoint" type="number"/></td>
+              </tr>
+            </table>
           </div>
-          <div class="flex flex-vertical border horizontal-align vertical-align small-margin">
-            <label>ÉQUIPEMENT, BABIOLES, FRINGUES</label>
-            <div class="flex flex-horizontal flex-wrap">
-              <div class="flex vertical-align horizontal-align" style="width: calc(100% * (1/3));" repeat.for="item of character.items">
-                <input value.bind="item.name" type="text"/>
+           <div class="stackpanel vertical fit">
+            <label class="center-text">ÉQUIPEMENT, BABIOLES, FRINGUES</label>
+            <div class="stackpanel horizontal wrap">
+              <div class="stackpanel" style="width: calc(100% * (1/3));" repeat.for="item of character.items">
+                <input class="fill" 
+                      value.bind="item.name"
+                      aubs-popover="body.bind: item.name; disabled.bind: !item.name || item.name.length < 20 ;position: top;"
+                      type="text"/>
               </div>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </div>

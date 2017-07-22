@@ -1,0 +1,78 @@
+<template>
+  <ux-dialog class="modal-lg">
+    <ux-dialog-header>
+      <h2>Liste des objets</h2>
+    </ux-dialog-header>
+    <ux-dialog-body>
+      
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="${tabActivated == 'AEP' ? 'active' : ''}"><a click.trigger="activateTab('AEP')">Armures et protections</a></li>
+        <li role="presentation" class="${tabActivated == 'AEB' ? 'active' : ''}"><a click.trigger="activateTab('AEB')">Armement et baston</a></li>
+        <li role="presentation" class="${tabActivated == 'EBF' ? 'active' : ''}"><a click.trigger="activateTab('EBF')">Equipement, babioles, fringues</a></li>
+        <li role="presentation" class="${tabActivated == 'MP' ? 'active' : ''}"><a click.trigger="activateTab('MP')">Machins précieux</a></li>
+      </ul>
+      <div class="scroll" style="height: 325px">
+        <table class="table table-condensed" show.bind="tabActivated == 'AEP'">
+            <tr>
+              <th class="center-text">Nom</th>
+              <th class="center-text">PR</th>
+              <th class="center-text">RUP</th>
+              <th class="center-text">Commentaire</th>
+            </tr>
+            <tr repeat.for="defItem of character.defItems">
+              <td class="col-lg-5"><input class="form-control" value.bind="defItem.name" type="text"></td>
+              <td><input class="form-control" value.bind="defItem.protectionPoint" type="number"/></td>
+              <td><input class="form-control" value.bind="defItem.breakPoint" type="number"/></td>
+              <td class="col-lg-5"><input class="form-control" value.bind="defItem.comment" type="text"/></td>
+            </tr>
+        </table>
+        <table class="table table-condensed" show.bind="tabActivated == 'AEB'">
+          <tr>
+            <th class="center-text">Nom</th>
+            <th class="center-text">PI</th>
+            <th class="center-text">RUP</th>
+            <th class="center-text">Commentaire</th>
+          </tr>
+          <tr repeat.for="attItem of character.attItems">
+            <td class="col-lg-5"><input class="form-control" value.bind="attItem.name" type="text"></td>
+            <td><input class="form-control" value.bind="attItem.damagePoint" type="number"/></td>
+            <td><input class="form-control" value.bind="attItem.breakPoint" type="number"/></td>
+            <td class="col-lg-5"><input class="form-control" value.bind="attItem.comment" type="text"/></td>
+          </tr>
+        </table>
+        <table class="table table-condensed" show.bind="tabActivated == 'EBF'">
+          <tr>
+            <th class="center-text">Nom</th>
+            <th class="center-text">Poids</th>
+            <th class="center-text">Nombre</th>
+            <th class="center-text">Commentaire</th>
+          </tr>
+          <tr repeat.for="item of character.items">
+            <td class="col-lg-5"><input class="form-control" value.bind="item.name" type="text"></td>
+            <td><input class="form-control" value.bind="item.weight" type="number"/></td>
+            <td><input class="form-control" value.bind="item.number" type="number"/></td>
+            <td class="col-lg-5"><input class="form-control" value.bind="item.comment" type="text"/></td>
+          </tr>
+        </table>
+        <table class="table table-condensed" show.bind="tabActivated == 'MP'">
+          <tr>
+            <th class="center-text">Nom</th>
+            <th class="center-text">Poids</th>
+            <th class="center-text">Nombre</th>
+            <th class="center-text">Commentaire</th>
+          </tr>
+          <tr repeat.for="preciousItem of character.preciousItems">
+            <td class="col-lg-5"><input class="form-control" value.bind="preciousItem.name" type="text"></td>
+            <td><input class="form-control" value.bind="preciousItem.weight" type="number"/></td>
+            <td><input class="form-control" value.bind="preciousItem.number" type="number"/></td>
+            <td class="col-lg-5"><input class="form-control" value.bind="preciousItem.comment" type="text"/></td>
+          </tr>
+        </table>
+      </div>
+    </ux-dialog-body>
+
+    <ux-dialog-footer>
+      <button click.trigger="dialogController.ok(character)">Ok</button>
+    </ux-dialog-footer>
+  </ux-dialog>
+</template>

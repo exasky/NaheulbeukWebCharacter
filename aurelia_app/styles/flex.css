@@ -1,0 +1,172 @@
+.home-container-padded {
+    padding: 4.2rem 0rem 0rem 0rem;
+}
+
+.home-container {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    bottom: 0rem;
+    left: 0rem;
+}
+
+.wrapper-content {
+    padding: 10px 10px 0;
+}
+
+.page-container {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+
+    -webkit-flex: 1 1 auto;
+    -moz-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    -o-flex: 1 1 auto;
+    flex: 1 1 auto;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.stackpanel {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    position: relative;
+}
+
+.stretch {
+    -webkit-flex: 1 1 auto;
+    -moz-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    -o-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.scroll {
+    overflow: auto;
+}
+
+.fit {
+    -webkit-flex: 0 0 auto;
+    -moz-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    -o-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.vertical {
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+}
+
+  .vertical.reverse {
+        -webkit-flex-direction: column-reverse;
+        -moz-flex-direction: column-reverse;
+        -ms-flex-direction: column-reverse;
+        -o-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+    }
+
+    .vertical.h-align-end {
+        align-items: flex-end;
+    }
+
+    .vertical.h-align-start {
+        align-items: flex-start;
+    }
+
+    .vertical.h-align-center {
+        align-items: center;
+    }
+
+    .vertical.v-align-end {
+        justify-content: flex-end;
+    }
+
+    .vertical.v-align-start {
+        justify-content: flex-start;
+    }
+
+    .vertical.v-align-center {
+        justify-content: center;
+    }
+
+    .vertical.v-space-between {
+        justify-content: space-between;
+    }
+
+    .vertical.v-space-around {
+        justify-content: space-around;
+    }
+
+.horizontal {
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    flex-direction: row;
+}
+
+    .horizontal.reverse {
+        -webkit-flex-direction: row-reverse;
+        -moz-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+        -o-flex-direction: row-reverse;
+        flex-direction: row-reverse;
+    }
+
+    .horizontal.v-align-end {
+        align-items: flex-end;
+    }
+
+    .horizontal.v-align-start {
+        align-items: flex-start;
+    }
+
+    .horizontal.v-align-center {
+        align-items: center;
+    }
+
+    .horizontal.h-align-end {
+        justify-content: flex-end;
+    }
+
+    .horizontal.h-align-start {
+        justify-content: flex-start;
+    }
+
+    .horizontal.h-align-center {
+        justify-content: center;
+    }
+
+    .horizontal.h-space-between {
+        justify-content: space-between;
+    }
+
+    .horizontal.h-space-around {
+        justify-content: space-around;
+    }
+
+.cell {
+    padding: 0.8rem 1.2rem;
+}
+
+/* Pose des soucis avec flex (property width: 1% surchargée)*/
+.input-group-addon, .input-group-btn {
+    /* width: unset; Non connu de IE*/
+    width: auto;
+}

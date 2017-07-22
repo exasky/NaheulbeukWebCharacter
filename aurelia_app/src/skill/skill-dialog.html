@@ -1,0 +1,27 @@
+<template>
+  <ux-dialog class="modal-lg">
+    <ux-dialog-header>
+      <h2>Skills</h2>
+    </ux-dialog-header>
+    <ux-dialog-body>
+      <div class="stackpanel vertical">
+        <div class="stackpanel horizontal">
+          <label class="col-lg-4 stackpanel horizontal h-align-center">Nom</label>
+          <label class="col-lg-8 stackpanel horizontal h-align-center">Effet(s)</label>
+        </div>
+        <div class="scroll" style="height: 350px">
+          <table class="table table-condensed">
+            <tr repeat.for="skill of character.skills">
+              <td class="col-lg-4"><input class="form-control" value.bind="skill.name" type="text"></td>
+              <td><input class="form-control" value.bind="skill.effects" type="number" /></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </ux-dialog-body>
+
+    <ux-dialog-footer>
+      <button click.trigger="dialogController.ok(character)">Ok</button>
+    </ux-dialog-footer>
+  </ux-dialog>
+</template>
