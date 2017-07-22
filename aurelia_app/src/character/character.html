@@ -42,22 +42,22 @@
         </div>
         <div class="stackpanel vertical stretch" style="flex-grow: 2">
           <div class="stackpanel border small-margin">
-            <div class="stackpanel stretch">
+            <div class="stackpanel horizontal stretch h-space-around">
               <label>Nom</label>
               <input value.bind="character.name" type="text"/>
             </div>
-            <div class="stackpanel stretch">
+            <div class="stackpanel horizontal stretch h-space-around">
               <label>Origine</label>
               <input value.bind="character.origin" type="text"/>
             </div>
-            <div class="stackpanel stretch">
+            <div class="stackpanel horizontal stretch h-space-around">
               <label>Metier(s)</label>
               <input value.bind="character.jobs" type="text"/>
             </div>
-            <div class="stackpanel fit horizontal">
+            <div class="stackpanel horizontal stretch h-space-around">
               <label>Sexe</label>
               <label repeat.for="sex of sexs">
-                <input type="radio" value.bind="sex" name="testOptions" checked.bind="character.sex"><i class="fa fa-${sex}"></i> 
+                <input type="radio" value.bind="sex" name="testOptions" checked.bind="character.sex">&nbsp;<i class="fa fa-${sex}"></i> 
               </label>
             </div>
           </div>
@@ -109,7 +109,7 @@
               </div>
             </div>
           </div>
-          <div class="stackpanel horizontal fit border small-margin">
+          <div class="stackpanel horizontal fit h-space-around border small-margin">
             <div class="stackpanel horizontal stretch">
               <div class="stackpanel vertical">
                 <label>MAGIE PHYS.</label>
@@ -206,9 +206,9 @@
               </tbody>
             </table>
           </div>
-          <div class="flex flex-horizontal">
-            <input type="button" class="btn btn-success" value="Save" click.trigger="save()"/>
-            <input type="button" class="btn btn-danger" value="Delete" disabled.bind="!character._id" click.trigger="delete()"/>
+          <div class="stackpanel horizontal h-align-center">
+            <input type="button" class="btn btn-success" value="Sauvegarder" click.trigger="save()"/>
+            <input type="button" class="btn btn-danger" value="Supprimer" disabled.bind="!character._id" click.trigger="delete()"/>
           </div>
         </div>
         <div class="stackpanel vertical stretch">

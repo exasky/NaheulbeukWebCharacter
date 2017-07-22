@@ -2,6 +2,7 @@ import { inject } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 import { ItemDialog } from 'item/item-dialog';
+import { ConfirmDialog } from './dialog/confirm-dialog'
 import { SkillDialog } from 'skill/skill-dialog';
 import { CharacterDao } from './dao/character-dao';
 import 'toastr';
@@ -35,6 +36,7 @@ export class Character {
       });
     } else {
       this.heading = "Création de personnage";
+      this.character = {};
       this.initCharacter();
     }
   }
@@ -69,10 +71,17 @@ export class Character {
   }
 
   delete() {
-    this.characterDao.deleteCharacter(this.character).then(result => {
-      toastr.success("Personnage supprimé");
-      this.router.navigate("/");
-    });
+    this.dialogService.open({
+      viewModel: ConfirmDialog,
+      model: this.character
+    }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        this.characterDao.deleteCharacter(this.character).then(result => {
+          toastr.success("Personnage supprimé");
+          this.router.navigate("/");
+        });
+      }
+    })
   }
 
   navigateOnSave(resultOfSave) {
@@ -111,13 +120,6 @@ export class Character {
     this.dialogService.open({
       viewModel: ItemDialog,
       model: this.character
-    }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        console.log('good - ', response.output);
-      } else {
-        console.log('bad');
-      }
-      console.log(response.output);
     })
   }
 
@@ -125,13 +127,6 @@ export class Character {
     this.dialogService.open({
       viewModel: SkillDialog,
       model: this.character
-    }).whenClosed(response => {
-      if (!response.wasCancelled) {
-        console.log('good - ', response.output);
-      } else {
-        console.log('bad');
-      }
-      console.log(response.output);
     })
   }
 }

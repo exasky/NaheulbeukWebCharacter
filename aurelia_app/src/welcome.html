@@ -1,9 +1,14 @@
 <template>
   <section class="au-animate">
     <h2>${heading}</h2>
-    <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="character of characters">
-      <a class="name" href="#" click.trigger="goToCharacter(character)">${character.name}</p>
-    </div>
-    <input type="button" value="Créer un personnage" click.trigger="createCharacter()"/>
+    <table class="table table-striped">
+      <tr>
+        <th>Nom du personnage</th>
+      </tr>
+      <tr repeat.for="character of characters">
+        <td click.trigger="goToCharacter(character)"><a class="name" href="#">${character.name}</a><td>
+      </tr>
+    </table>
+    <input type="button" class="btn btn-info" value="Créer un personnage" click.trigger="createCharacter()"/>
   </section>
 </template>
