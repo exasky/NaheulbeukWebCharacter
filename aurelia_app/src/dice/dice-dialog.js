@@ -8,7 +8,5 @@ export class DiceDialog {
         this.dialogController = dialogController;
     }
 
-    activate(character){
-        this.character = character;
-    }
+    activate(){}
 }

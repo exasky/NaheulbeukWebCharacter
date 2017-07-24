@@ -1,14 +1,17 @@
 <template>
-  <section class="au-animate">
-    <h2>${heading}</h2>
-    <table class="table table-striped">
-      <tr>
-        <th>Nom du personnage</th>
-      </tr>
-      <tr repeat.for="character of characters">
-        <td click.trigger="goToCharacter(character)"><a class="name" href="#">${character.name}</a><td>
-      </tr>
-    </table>
-    <input type="button" class="btn btn-info" value="Créer un personnage" click.trigger="createCharacter()"/>
+  <section class="col-lg-offset-4 col-lg-4">
+    <div class="stackpanel vertical">
+      <h2 class="stackpanel horizontal h-align-center">${heading}</h2>
+      <table class="table table-striped">
+        <tr>
+          <th>Nom du personnage</th>
+        </tr>
+        <tr repeat.for="character of characters">
+          <td click.trigger="goToCharacter(character)"><a class="name" href="#">${character.name}</a></td>
+        </tr>
+      </table>
+      <br/>
+      <input type="button" class="btn btn-info" value="Créer un personnage" click.trigger="createCharacter()"/>
+    </div>
   </section>
 </template>
