@@ -1,25 +1,20 @@
 {
-  "name": "aurelia-skeleton-navigation",
-  "version": "1.1.2",
-  "description": "A starter kit for building a standard navigation-style app with Aurelia.",
+  "name": "aurelia-naheulbeuk-rpg-character-sheet",
+  "version": "1",
+  "description": "A simple character sheet for Naheulbeuk RPG",
   "keywords": [
     "aurelia",
-    "navigation",
-    "skeleton"
+    "naheulbeuk",
+    "character sheet"
   ],
-  "homepage": "http://aurelia.io",
-  "bugs": {
-    "url": "https://github.com/aurelia/skeleton-navigation/issues"
-  },
-  "license": "CC0-1.0",
-  "author": "Rob Eisenberg <rob@bluespire.com> (http://robeisenberg.com/)",
+  "license": "MIT",
+  "author": "Jeremy Simar (https://github.com/exasky)",
   "main": "dist/main.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/aurelia/skeleton-navigation"
+    "url": "https://github.com/exasky/NaheulbeukWebCharacter"
   },
   "scripts": {
-    "test": "gulp test",
     "e2e": "gulp serve webdriver-standalone e2e"
   },
   "devDependencies": {
