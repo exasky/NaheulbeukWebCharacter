@@ -9,6 +9,7 @@ export function configure(aurelia) {
       config.useDefaults();
       config.settings.lock = false;
       config.settings.keyboard = true;
+      config.settings.centerHorizontalOnly = true;
     });
 
   aurelia.start().then(() => aurelia.setRoot());

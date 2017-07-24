@@ -2,8 +2,9 @@ import { inject } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 import { DialogService } from 'aurelia-dialog';
 import { ItemDialog } from 'item/item-dialog';
-import { ConfirmDialog } from './dialog/confirm-dialog'
 import { SkillDialog } from 'skill/skill-dialog';
+import { DiceDialog } from 'dice/dice-dialog';
+import { ConfirmDialog } from './dialog/confirm-dialog'
 import { CharacterDao } from './dao/character-dao';
 import 'toastr';
 
@@ -151,6 +152,13 @@ export class Character {
   openSkillDialog() {
     this.dialogService.open({
       viewModel: SkillDialog,
+      model: this.character
+    })
+  }
+
+  openDiceDialog() {
+    this.dialogService.open({
+      viewModel: DiceDialog,
       model: this.character
     })
   }

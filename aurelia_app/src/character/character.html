@@ -37,13 +37,7 @@
         <img src="/img/vertical-separator.png"/>
         <div class="stackpanel vertical stretch border">
           <div class="stackpanel fit horizontal v-align-center h-align-center">
-            <a href="#" aubs-popover="body: Ouvrir le sac !; position: bottom">
-              <img class="icon" src="/img/item-bag-icon.png" click.trigger="openBagDialog()"/>
-            </a>
             <img src="/img/header-line.png" style="max-width: 70%;"/>
-            <a href="#" aubs-popover="body: Ouvrir les skills !; position: bottom">
-              <img class="icon" src="/img/character-skill-icon.png" click.trigger="openSkillDialog()"/>
-            </a>
           </div>
           <div class="stackpanel small-margin">
             <div class="stackpanel horizontal stretch h-space-around">
@@ -201,6 +195,17 @@
             </tr>
           </table>
           <br/>
+          <div class="stackpanel fit horizontal v-align-center h-align-center">
+            <a href="#" aubs-popover="body: Ouvrir le sac !; position: top">
+              <img class="icon" src="/img/item-bag-icon.png" click.trigger="openBagDialog()"/>
+            </a>
+            <a href="#" aubs-popover="body: Ouvrir les skills !; position: top">
+              <img class="icon" src="/img/character-skill-icon.png" click.trigger="openSkillDialog()"/>
+            </a>
+            <a href="#" aubs-popover="body: Lancer un dé !; position: top">
+              <img class="icon" src="/img/dice.png" click.trigger="openDiceDialog()"/>
+            </a>
+          </div>
           <div class="stackpanel horizontal h-align-center h-space-around">
             <input type="button" class="btn btn-info" value="Retour à la liste des personnages" click.trigger="goToHome()"/>
             <input type="button" class="btn btn-success" value="Sauvegarder" click.trigger="save()"/>
