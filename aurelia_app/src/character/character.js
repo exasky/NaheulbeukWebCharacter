@@ -71,7 +71,7 @@ export class Character {
   }
 
   goToHome() {
-    if (JSON.stringify(this.unmodifiedCharacter) !== JSON.stringify(this.character)) {
+    if (!this.compareObjects(this.character, this.unmodifiedCharacter)) {
       this.dialogService.open({
         viewModel: ConfirmDialog,
         model: {
@@ -159,7 +159,28 @@ export class Character {
   openDiceDialog() {
     this.dialogService.open({
       viewModel: DiceDialog,
-      model: this.character
+      model: null
     })
+  }
+
+  compareObjects(from, to) {
+    var cp = Object.keys(from).sort();
+
+    for (var i = 0; i < cp.length; ++i) {
+      var currentProperty = from[cp[i]];
+      var currentUnmodifiedProperty = to[cp[i]]
+      if (currentProperty) {
+        if (currentProperty instanceof Array || currentProperty instanceof Object) {
+          if (!this.compareObjects(currentProperty, currentUnmodifiedProperty)) {
+            return false;
+          }
+        } else {
+          if (currentProperty != currentUnmodifiedProperty) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
   }
 }
