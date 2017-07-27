@@ -4,6 +4,7 @@ import { DialogService } from 'aurelia-dialog';
 import { ItemDialog } from 'item/item-dialog';
 import { SkillDialog } from 'skill/skill-dialog';
 import { DiceDialog } from 'dice/dice-dialog';
+import { PetDialog } from 'pet/pet-dialog';
 import { ConfirmDialog } from './dialog/confirm-dialog'
 import { CharacterDao } from './dao/character-dao';
 import 'toastr';
@@ -51,6 +52,7 @@ export class Character {
     this.character.preciousItems = this.initArray(this.character.preciousItems, 10);
     this.character.items = this.initArray(this.character.items, 21);
     this.character.skills = this.initArray(this.character.skills, 15);
+    this.character.pets = this.initArray(this.character.pets, 1);
     this.updatePvBar();
     this.updatePaBar();
     this.initUnmodifiedCharacter();
@@ -146,21 +148,28 @@ export class Character {
     this.dialogService.open({
       viewModel: ItemDialog,
       model: this.character
-    })
+    });
   }
 
   openSkillDialog() {
     this.dialogService.open({
       viewModel: SkillDialog,
       model: this.character
-    })
+    });
   }
 
   openDiceDialog() {
     this.dialogService.open({
       viewModel: DiceDialog,
       model: null
-    })
+    });
+  }
+
+  openPetDialog() {
+    this.dialogService.open({
+      viewModel: PetDialog,
+      model: this.character
+    });
   }
 
   compareObjects(from, to) {

@@ -1,0 +1,44 @@
+<template>
+  <ux-dialog class="modal-lg">
+    <ux-dialog-header>
+      <h2>Familiers / Invocations</h2>
+    </ux-dialog-header>
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="${selectedPet == pet ? 'active' : ''}" repeat.for="pet of character.pets">
+        <a click.trigger="selectPet(pet)">${pet.name}</a>
+      </li>
+      <li role="presentation">
+        <a click.trigger="addPet()"><span class="glyphicon glyphicon-plus-sign">Ajouter</span></a>
+      </li>
+    </ul>
+    <div repeat.for="pet of character.pets" show.bind="selectedPet == pet">
+      <label>Nom</label>
+      <input value.bind="pet.name" type="text"/>
+      <table class="table table-condensed">
+        <tr>
+          <th>ENERGIE VITALE (EV-PV)</th>
+          <th>Max</th>
+          <th>Courant</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="progress" style="margin-bottom: 5px">
+              <div id="pvBar-${pet}" class="progress-bar" role="progressbar" style="width:0%"></div>
+            </div>
+          </td>
+          <td>
+            <input class="small-width" value.bind="pet.maxPv" change.delegate="updatePvBar(pet)" type="number" />
+          </td>
+          <td>
+            <input class="small-width" value.bind="pet.currentPv" type="number" max.bind="pet.maxPv" change.delegate="updatePvBar(pet)"
+            />
+          </td>
+        </tr>
+      </table>
+      <input type="button" class="btn btn-danger" value="Supprimer" click.trigger="deletePet(pet)"/>
+    </div>
+    <ux-dialog-footer>
+      <button click.trigger="dialogController.ok(character)">Ok</button>
+    </ux-dialog-footer>
+  </ux-dialog>
+</template>
