@@ -47,6 +47,21 @@ export class PetDialog {
     }
 
     updatePvBar(pet) {
+        var index = this.pets.indexOf(pet);
         console.log("PAS ENCORE");
+        var id= "#pvBar-" + index;
+        if (pet.maxPv && pet.currentPv && pet.maxPv != 0) {
+            var percentage = (pet.currentPv * 100) / pet.maxPv;
+            var progressBarCLass = "progress-bar";
+            if (percentage > 60) {
+                progressBarCLass += " progress-bar-success";
+            } else if (percentage > 30) {
+                progressBarCLass += " progress-bar-warning";
+            } else {
+                progressBarCLass += " progress-bar-danger";
+            }
+            $(id)[0].setAttribute("style", "width:" + percentage + "%");
+            $(id)[0].setAttribute("class", progressBarCLass);
+        }
     }
 }

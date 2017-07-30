@@ -23,7 +23,7 @@
         <tr>
           <td>
             <div class="progress" style="margin-bottom: 5px">
-              <div id="pvBar-${pet}" class="progress-bar" role="progressbar" style="width:0%"></div>
+              <div id="pvBar-${$index}" class="progress-bar" role="progressbar" style="width:0%"></div>
             </div>
           </td>
           <td>
@@ -32,6 +32,22 @@
           <td>
             <input class="small-width" value.bind="pet.currentPv" type="number" max.bind="pet.maxPv" change.delegate="updatePvBar(pet)">
           </td>
+        </tr>
+      </table>
+      <table class="table table-condensed">
+        <tr>
+          <th>Attaque</th>
+          <th>Parade</th>
+          <th>Courage</th>
+          <th>PI</th>
+          <th>PR</th>
+        </tr>
+        <tr>
+          <td><input class="small-width" value.bind="pet.ATT" type="number"></td>
+          <td><input class="small-width" value.bind="pet.PAR" type="number"></td>
+          <td><input class="small-width" value.bind="pet.COU" type="number"></td>
+          <td><input class="small-width" value.bind="pet.damagePoint" type="text"></td>
+          <td><input class="small-width" value.bind="pet.protectionPoint" type="number"></td>
         </tr>
       </table>
       <input type="button" class="btn btn-danger" value="Supprimer" click.trigger="deletePet(pet)"/>
