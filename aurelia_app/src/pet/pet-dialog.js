@@ -45,4 +45,8 @@ export class PetDialog {
             }
         });
     }
+
+    updatePvBar(pet) {
+        console.log("PAS ENCORE");
+    }
 }

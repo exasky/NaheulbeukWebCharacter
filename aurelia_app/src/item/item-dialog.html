@@ -21,9 +21,9 @@
             </tr>
             <tr repeat.for="defItem of character.defItems">
               <td class="col-lg-5"><input class="form-control" value.bind="defItem.name" type="text"></td>
-              <td><input class="form-control" value.bind="defItem.protectionPoint" type="number"/></td>
-              <td><input class="form-control" value.bind="defItem.breakPoint" type="number"/></td>
-              <td class="col-lg-5"><input class="form-control" value.bind="defItem.comment" type="text"/></td>
+              <td><input class="form-control" value.bind="defItem.protectionPoint" type="number"></td>
+              <td><input class="form-control" value.bind="defItem.breakPoint" type="number"></td>
+              <td class="col-lg-5"><input class="form-control" value.bind="defItem.comment" type="text"></td>
             </tr>
         </table>
         <table class="table table-condensed" show.bind="tabActivated == 'AEB'">
@@ -35,9 +35,9 @@
           </tr>
           <tr repeat.for="attItem of character.attItems">
             <td class="col-lg-5"><input class="form-control" value.bind="attItem.name" type="text"></td>
-            <td><input class="form-control" value.bind="attItem.damagePoint" type="number"/></td>
-            <td><input class="form-control" value.bind="attItem.breakPoint" type="number"/></td>
-            <td class="col-lg-5"><input class="form-control" value.bind="attItem.comment" type="text"/></td>
+            <td><input class="form-control" value.bind="attItem.damagePoint" type="text"></td>
+            <td><input class="form-control" value.bind="attItem.breakPoint" type="number"></td>
+            <td class="col-lg-5"><input class="form-control" value.bind="attItem.comment" type="text"></td>
           </tr>
         </table>
         <table class="table table-condensed" show.bind="tabActivated == 'EBF'">

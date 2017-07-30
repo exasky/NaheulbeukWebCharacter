@@ -49,9 +49,9 @@ export class Character {
     this.character.fightCharacteristics = this.initArray(this.character.fightCharacteristics, 5);
     this.character.defItems = this.initArray(this.character.defItems, 6);
     this.character.attItems = this.initArray(this.character.attItems, 4);
-    this.character.preciousItems = this.initArray(this.character.preciousItems, 10);
-    this.character.items = this.initArray(this.character.items, 21);
-    this.character.skills = this.initArray(this.character.skills, 15);
+    this.character.preciousItems = this.initArray(this.character.preciousItems, 15);
+    this.character.items = this.initArray(this.character.items, 30);
+    this.character.skills = this.initArray(this.character.skills, 20);
     this.character.pets = this.initArray(this.character.pets, 1);
     this.updatePvBar();
     this.updatePaBar();

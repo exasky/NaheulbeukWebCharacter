@@ -7,19 +7,19 @@
           <table class="table table-condensed">
             <tr>
               <td><label>NIVEAU</label></td>
-              <td><input class="small-width" value.bind="character.level" type="number"/></td>
+              <td><input class="small-width" value.bind="character.level" type="number"></td>
             </tr>
             <tr>
               <td><label>EXPÉRIENCE</label></td>
-              <td><input class="small-width" value.bind="character.experience" type="number"/></td>
+              <td><input class="small-width" value.bind="character.experience" type="number"></td>
             </tr>
             <tr>
               <td><label>POINTS DE DESTIN</label></td>
-              <td><input class="small-width" value.bind="character.destinyPoints" type="number"/></td>
+              <td><input class="small-width" value.bind="character.destinyPoints" type="number"></td>
             </tr>
             <tr>
               <td><label>MES RICHESSES À MOI QUE J'AI</label></td>
-              <td><input class="small-width" value.bind="character.gold" type="number"/></td>
+              <td><input class="small-width" value.bind="character.gold" type="number"></td>
             </tr>
             <tr>
               <td colspan="2"><label>MACHINS PRÉCIEUX</label></td>
@@ -27,8 +27,8 @@
             <tr repeat.for="preciousItem of character.preciousItems">
               <td colspan="2">
                 <input class="fill"
-                  value.bind="preciousItems.name"
-                  aubs-popover="body.bind: preciousItems.name; disabled.bind: !preciousItems.name || preciousItems.name.length < 20 ;position: right;"
+                  value.bind="preciousItem.name"
+                  aubs-popover="body.bind: preciousItem.name; disabled.bind: !preciousItem.name || preciousItem.name.length < 20 ;position: right;"
                   type="text"/>
               </td>
             </tr>
@@ -42,15 +42,15 @@
           <div class="stackpanel small-margin">
             <div class="stackpanel horizontal stretch h-space-around">
               <label>Nom</label>
-              <input value.bind="character.name" type="text"/>
+              <input value.bind="character.name" type="text">
             </div>
             <div class="stackpanel horizontal stretch h-space-around">
               <label>Origine</label>
-              <input value.bind="character.origin" type="text"/>
+              <input value.bind="character.origin" type="text">
             </div>
             <div class="stackpanel horizontal stretch h-space-around">
               <label>Metier(s)</label>
-              <input value.bind="character.jobs" type="text"/>
+              <input value.bind="character.jobs" type="text">
             </div>
             <div class="stackpanel horizontal stretch h-space-around">
               <label>Sexe</label>
@@ -195,6 +195,10 @@
             </tr>
           </table>
           <br/>
+          <div class="stackpanel horizontal stretch">
+            <textarea class="stackpanel horizontal stretch" rows="4" placeholder="Commentaires..."
+                value.bind="character.comments"></textarea>
+          </div>
           <div class="stackpanel fit horizontal v-align-center h-align-center">
             <a href="#" aubs-popover="body: Ouvrir le sac !; position: top">
               <img class="icon" src="/img/item-bag-icon.png" click.trigger="openBagDialog()"/>
@@ -251,8 +255,8 @@
                         aubs-popover="body.bind: attItem.name; disabled.bind: !attItem.name || attItem.name.length < 25 ;position: top;"
                         value.bind="attItem.name" type="text"/>
                 </td>
-                <td><input class="small-width" value.bind="attItem.damagePoint" type="number"/></td>
-                <td><input class="small-width" value.bind="attItem.breakPoint" type="number"/></td>
+                <td><input class="small-width" value.bind="attItem.damagePoint" type="text"></td>
+                <td><input class="small-width" value.bind="attItem.breakPoint" type="number"></td>
               </tr>
             </table>
           </div>
