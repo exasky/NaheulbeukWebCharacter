@@ -50,7 +50,10 @@
           <td><input class="small-width" value.bind="pet.protectionPoint" type="number"></td>
         </tr>
       </table>
-      <input type="button" class="btn btn-danger" value="Supprimer" click.trigger="deletePet(pet)"/>
+      <br/>
+      <div class="stackpanel horizontal h-align-center">
+        <input type="button" class="btn btn-danger" value="Supprimer" click.trigger="deletePet(pet)"/>
+      </div>
     </div>
     <ux-dialog-footer>
       <button click.trigger="dialogController.ok(character)">Ok</button>

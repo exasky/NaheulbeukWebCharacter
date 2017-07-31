@@ -1,0 +1,6 @@
+echo "Launching aurelia..."
+cd $(dirname $0)/aurelia_app/
+./launch &
+echo "Launching Node..."
+cd $(dirname $0)/node_app/
+./launch &

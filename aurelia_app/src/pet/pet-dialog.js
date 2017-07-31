@@ -4,7 +4,7 @@ import { ConfirmDialog } from 'character/dialog/confirm-dialog'
 
 @inject(DialogController, DialogService)
 export class PetDialog {
-
+    
     constructor(dialogController, dialogService) {
         this.dialogController = dialogController;
         this.dialogService = dialogService;
@@ -14,6 +14,12 @@ export class PetDialog {
         this.character = character;
         this.pets = this.character.pets;
         this.selectedPet = this.pets[0];
+    }
+
+    attached() {
+        for(var pet of this.pets) {
+            this.updatePvBar(pet);
+        }
     }
 
     selectPet(pet) {

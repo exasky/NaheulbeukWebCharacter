@@ -144,6 +144,18 @@ export class Character {
     }
   }
 
+  getItemDescr(item) {
+    var descr = "";
+    if (item.number) {
+      descr += item.number + "x ";
+    }
+    descr += item.name;
+    if (item.comment) {
+      descr += "<br/>(" + item.comment + ")";
+    }
+    return descr;
+  }
+
   openBagDialog() {
     this.dialogService.open({
       viewModel: ItemDialog,

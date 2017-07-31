@@ -28,7 +28,7 @@
               <td colspan="2">
                 <input class="fill"
                   value.bind="preciousItem.name"
-                  aubs-popover="body.bind: preciousItem.name; disabled.bind: !preciousItem.name || preciousItem.name.length < 20 ;position: right;"
+                  aubs-popover="body.bind: getItemDescr(preciousItem); disabled.bind: !preciousItem.name; position: right;"
                   type="text"/>
               </td>
             </tr>
@@ -102,21 +102,28 @@
                 <small>Moyenne INT et AD</small>
               </td>
               <td>
-                <input class="small-width" value.bind="physMagic" type="number"/>
+                <input class="small-width" value.bind="character.physMagic" type="number"/>
               </td>
               <td>
                 <label>MAGIE PSY.</label><br/>
                 <small>Moyenne INT et CHA</small>
               </td>
               <td>
-                <input class="small-width" value.bind="psyMagic" type="number"/>
+                <input class="small-width" value.bind="character.psyMagic" type="number"/>
               </td>
               <td>
                 <label>RESIST MAGIE.</label><br/>
                 <small>Moyenne COU, INT et FO</small>
               </td>
               <td>
-                <input class="small-width" value.bind="resistMagic" type="number"/>
+                <input class="small-width" value.bind="character.resistMagic" type="number"/>
+              </td>
+              <td>
+                <label>PR</label>
+                <img class="icon" src="/img/shield-icon.png"/>
+              </td>
+              <td>
+                <input class="small-width" value.bind="character.totalPR" type="number"/>
               </td>
             </tr>
           </table>
@@ -199,7 +206,7 @@
             <textarea class="stackpanel horizontal stretch" rows="4" placeholder="Commentaires..."
                 value.bind="character.comments"></textarea>
           </div>
-          <div class="stackpanel fit horizontal v-align-center h-align-center">
+          <div class="stackpanel fit horizontal h-space-around">
             <a href="#" aubs-popover="body: Ouvrir le sac !; position: top">
               <img class="icon" src="/img/item-bag-icon.png" click.trigger="openBagDialog()"/>
             </a>
@@ -232,7 +239,7 @@
               <tr repeat.for="defItem of character.defItems">
                 <td>
                   <input class="fill" 
-                        aubs-popover="body.bind: defItem.name; disabled.bind: !defItem.name || defItem.name.length < 25 ;position: top;"
+                        aubs-popover="body.bind: getItemDescr(defItem); disabled.bind: !defItem.name;position: top;"
                         value.bind="defItem.name" type="text"/>
                 </td>
                 <td><input class="small-width" value.bind="defItem.protectionPoint" type="number"/></td>
@@ -252,7 +259,7 @@
               <tr repeat.for="attItem of character.attItems">
                 <td>
                   <input class="fill" 
-                        aubs-popover="body.bind: attItem.name; disabled.bind: !attItem.name || attItem.name.length < 25 ;position: top;"
+                        aubs-popover="body.bind: getItemDescr(attItem); disabled.bind: !attItem.name;position: top;"
                         value.bind="attItem.name" type="text"/>
                 </td>
                 <td><input class="small-width" value.bind="attItem.damagePoint" type="text"></td>
@@ -266,7 +273,7 @@
               <div class="stackpanel" style="width: calc(100% * (1/3));" repeat.for="item of character.items">
                 <input class="fill" 
                       value.bind="item.name"
-                      aubs-popover="body.bind: item.name; disabled.bind: !item.name || item.name.length < 20 ;position: top;"
+                      aubs-popover="body.bind: getItemDescr(item); disabled.bind: !item.name; position: left;"
                       type="text"/>
               </div>
             </div>
